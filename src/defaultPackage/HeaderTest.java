@@ -22,7 +22,6 @@ final class HeaderTest {
 		frame.setSize(300, 200);
 
 		Header h = new Header(10);
-		h.create();
 		panel.add(h.getPanel());
 
 		frame.setVisible(true);

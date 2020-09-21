@@ -29,7 +29,7 @@ public class Game {
 	private static Header header;
 	private static Minefield minefield;
 	private static Border border;
-	private static JPanel mainPanel = null;
+	private static JPanel mainPanel = null;  // TODO what is this?
 
 	private static int cellCountX = 10;
 	private static int cellCountY = 10;
@@ -49,34 +49,35 @@ public class Game {
 	static boolean justLaunched = true;
 
 	public void go() {
-		// creating frame
+		// create frame
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle("Sweeper");
-		ArrayList<Image> iconList = new ArrayList<Image>();
-		iconList.add(getImage("Icon16.png"));
-		iconList.add(getImage("Icon24.png"));
-		iconList.add(getImage("Icon32.png"));
-		frame.setIconImages(iconList);
+		frame.setIconImages(makeIconList());
 
 		menu = new Menu();
 		frame.getContentPane().add(BorderLayout.NORTH, menu.getMenuBar());
 
 		launchNewGame();
+        frame.addKeyListener(new KeyReader());  // key bindings for opening cells, setting flags, etc.
 		frame.setVisible(true);
-
-		frame.addKeyListener(new KeyReader());  // key bindings for opening cells, setting flags, etc.
 	}
-
+	
+	private ArrayList<Image> makeIconList() {
+        ArrayList<Image> iconList = new ArrayList<>();
+        iconList.add(getImage("Icon16.png"));
+        iconList.add(getImage("Icon24.png"));
+        iconList.add(getImage("Icon32.png"));
+        return iconList;
+    }
+    
 	public static void launchNewGame() {
-		resetGame();
+		removeMainPanel();
 		header = new Header(cellCountX);
-		header.create();
 		minefield = new Minefield(cellCountX, cellCountY, minesCount);
 		minefield.create();
 		border = new Border();
-		border.create();
 		mainPanel = border.getPanel();
 		mainPanel.setBackground(Color.WHITE);
 		frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
@@ -92,21 +93,25 @@ public class Game {
 
 		if (justLaunched) {
 			justLaunched = false;
-			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			int windowX = (screenSize.width - frame.getWidth()) / 2;
-			int windowY = (screenSize.height - frame.getHeight()) / 2;
-			frame.setLocation(windowX, windowY);
+			locateFrameAtScreenCenter();
 		}
 	}
 
-	public static void launchNewGame(int width, int height, int countOfMines) {
-		cellCountX = width;
-		cellCountY = height;
-		minesCount = countOfMines;
-		launchNewGame();
-	}
+    public static void launchNewGame(int cellCountX, int cellCountY, int minesCount) {
+        Game.cellCountX = cellCountX;
+        Game.cellCountY = cellCountY;
+        Game.minesCount = minesCount;
+        launchNewGame();
+    }
+	
+	private static void locateFrameAtScreenCenter() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int windowX = (screenSize.width - frame.getWidth()) / 2;
+        int windowY = (screenSize.height - frame.getHeight()) / 2;
+        frame.setLocation(windowX, windowY);
+    }
 
-	public static void resetGame() {
+	private static void removeMainPanel() {
 		if (mainPanel != null) {
 			frame.remove(mainPanel);
 		}
@@ -144,7 +149,6 @@ public class Game {
 		header.resetScale();
 		minefield.resetScale();
 		border = new Border();
-		border.create();
 		mainPanel = border.getPanel();
 		mainPanel.setBackground(Color.WHITE);
 		frame.getContentPane().add(BorderLayout.CENTER, mainPanel);

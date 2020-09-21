@@ -40,9 +40,10 @@ public class Border {
 		headerHeight = header.getHeight();
 		borderHor = new BorderFragment[minefieldWidth][3];
 		borderVert = new BorderFragment[2][minefieldHeight + headerHeight + 3];
+		create();
 	}
 
-	public void create() {
+	private void create() {
 		BorderFragment.resetScale();
 		for (int i = 0; i < minefieldWidth; i++) {
 			for (int j = 0; j <= 2; j++) {

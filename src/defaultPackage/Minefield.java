@@ -37,7 +37,6 @@ public class Minefield {
 		height = Math.min(fieldHeight, HEIGHT_MAX);
 		minesCount = Math.min(countOfMines, width * height - 1);
 		Game.setGameOn(true);
-
 	}
 
 	public void create() {

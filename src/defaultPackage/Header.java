@@ -28,9 +28,10 @@ public class Header {
 		smile = new Smile(scale);
 		mineCounter = new MineCounter();
 		timer = new TimeCounter();
+		create();
 	}
 
-	public void create() {
+	private void create() {
 		myPanel.setSize((int) (16 * scale * width), (int) (16 * scale * HEIGHT));
 		myPanel.setBackground(Color.LIGHT_GRAY);
 		smile.setLocation((myPanel.getWidth() - smile.getSmileSize()) / 2,
