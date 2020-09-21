@@ -12,8 +12,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 
@@ -23,9 +21,6 @@ import javax.swing.JPanel;
 
 import borderFragments.BorderFragment;
 import images.Resource;
-import menuListeners.FlagHelper;
-import menuListeners.OpenHelper;
-import menuListeners.SolveHelper;
 
 public class Game {
 
