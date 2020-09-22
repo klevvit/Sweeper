@@ -1,65 +1,63 @@
-/**
- * @author Kovalenko Lev
-*/
-/**
- * Copyright Kovalenko Lev (Sweeper) 2016. All rights reserved.
- */
 package defaultPackage;
 
 import java.util.InvalidPropertiesFormatException;
 
+/**
+ * Class for simple work with different image packs.
+ * @author Kovalenko Lev
+ * Copyright Kovalenko Lev (Sweeper) 2020. All rights reserved.
+ */
 public class ImagePack {
-	private final String myPath;
-	private final String myName;
-	private final String myAuthor;
-	private boolean isFinished = true;
-	public static final char splitter = '|';
+
+    /** path to folder with images */
+    private final String path;
+
+	/** image pack name; will be shown to user */
+	private final String name;
+
+	/** image pack author name; will be shown to user */
+	private final String author;
+
+	/** if false, user will see a remark that package is not finished */
+	private boolean isFull = true;
+
+	/** symbols which visually split info parts about package (name, author, etc.) when displaying them to user */
+	private static final String SPLITTER = "; ";
 
 	public ImagePack(String name, String author, String path) {
-		myName = name;
-		myAuthor = author;
-		myPath = path;
+		this.name = name;
+		this.author = author;
+		this.path = path;
 	}
 
 	public ImagePack(String name, String author, String path, boolean isFull) {
 		this(name, author, path);
-		isFinished = isFull;
-
+		this.isFull = isFull;
 	}
 
-	public ImagePack(String nameAuthorPath) throws InvalidPropertiesFormatException {
-		String[] a = nameAuthorPath.split(Character.toString(splitter));
-		if (a.length == 3) {
-			myName = a[0];
-			myAuthor = a[1];
-			myPath = a[2];
-		} else {
-			throw new InvalidPropertiesFormatException(a.length - 1 + " splits found, 2 splits excepted.");
-		}
-	}
-
+	/** String info about package, must be shown to user */
 	public String toString() {
-		String packName = myName + " ";
-		if (myAuthor != "") {
-			packName += "| Author: " + myAuthor + " ";
+		String packInfo = name;
+		if (author != "") {
+			packInfo += SPLITTER + "Author: " + author;
 		}
-		if (!isFinished) {
-			packName += "(not finished yet)";
+		if (!isFull) {
+			packInfo += SPLITTER + "not finished";
 		}
-		return packName;
+		return packInfo;
 	}
 
 	// getters
 
 	public String getName() {
-		return myName;
+		return name;
 	}
 
 	public String getAuthor() {
-		return myAuthor;
+		return author;
 	}
 
 	public String getPath() {
-		return myPath;
+		return path;
 	}
 }
