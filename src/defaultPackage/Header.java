@@ -1,28 +1,27 @@
-/**
- * @author Kovalenko Lev
-*/
-/**
- * Copyright Kovalenko Lev (Sweeper) 2016. All rights reserved.
- */
+
 package defaultPackage;
 
 import java.awt.Color;
-
 import javax.swing.JPanel;
 
+/**
+ * @author Kovalenko Lev
+ * Copyright Kovalenko Lev (Sweeper) 2016. All rights reserved.
+ */
 public class Header {
 
 	private final JPanel myPanel = new JPanel(null);
+
+	/** header width measured in minefield cells */
 	private final int width;
+	/** header height measured in minefield cells */
 	public static final int HEIGHT = 2;
 	private float scale;
 	private final Smile smile;
 	private final MineCounter mineCounter;
 	private final TimeCounter timer;
-	private JPanel mineCounterPanel;
-	private JPanel timerPanel;
 
-	public Header(int minefieldWidth) {
+    public Header(int minefieldWidth) {
 		width = minefieldWidth;
 		scale = Game.getScale();
 		smile = new Smile(scale);
@@ -32,17 +31,23 @@ public class Header {
 	}
 
 	private void create() {
-		myPanel.setSize((int) (16 * scale * width), (int) (16 * scale * HEIGHT));
+		myPanel.setSize((int) (width * Cell.DEFAULT_SIZE_IN_PIXELS * scale),
+                (int) (HEIGHT * Cell.DEFAULT_SIZE_IN_PIXELS * scale));
 		myPanel.setBackground(Color.LIGHT_GRAY);
+
+		// position smile in the center
 		smile.setLocation((myPanel.getWidth() - smile.getSmileSize()) / 2,
 				(myPanel.getHeight() - smile.getSmileSize()) / 2);
+
 		smile.addMouseListener(new SmileListener());
 		myPanel.add(smile);
-		mineCounterPanel = mineCounter.getPanel();
-		mineCounterPanel.setLocation((int) (6 * scale), (myPanel.getHeight() - mineCounterPanel.getHeight()) / 2);
+
+        JPanel mineCounterPanel = mineCounter.getPanel();
+		mineCounterPanel.setLocation((int) (6 * scale), (myPanel.getHeight() - mineCounterPanel.getHeight()) / 2);  // TODO: what's the constant?
 		myPanel.add(mineCounterPanel);
-		timerPanel = timer.getPanel();
-		timerPanel.setLocation(myPanel.getWidth() - (int) (6 * scale) - timerPanel.getWidth(),
+
+        JPanel timerPanel = timer.getPanel();
+		timerPanel.setLocation(myPanel.getWidth() - (int) (6 * scale) - timerPanel.getWidth(),  // TODO: what's the constant?
 				(myPanel.getHeight() - mineCounterPanel.getHeight()) / 2);
 		myPanel.add(timerPanel);
 	}
