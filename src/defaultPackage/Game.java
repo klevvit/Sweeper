@@ -39,9 +39,7 @@ public class Game {
 
 
 	private static float scale = 2f;
-	public static final String IMAGE_FOLDER = "";
-	private static final ImagePack[] PACK = { new ImagePack("Default", "", IMAGE_FOLDER + "default/"),
-			new ImagePack("Battleship", "Andrés Dugin", IMAGE_FOLDER + "battleship/", false) };
+	private static final ImagePack[] PACK = ImagePack.getDefaultPackSet();
 	private static ImagePack packNow = PACK[0];
 	public static final int FRAME_CORRECTION_X = +6;
 	public static final int FRAME_CORRECTION_Y = +52;

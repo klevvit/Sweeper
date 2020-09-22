@@ -1,11 +1,10 @@
 package defaultPackage;
 
-import java.util.InvalidPropertiesFormatException;
 
 /**
  * Class for simple work with different image packs.
  * @author Kovalenko Lev
- * Copyright Kovalenko Lev (Sweeper) 2020. All rights reserved.
+ * Copyright © Kovalenko Lev (Sweeper) 2020. All rights reserved.
  */
 public class ImagePack {
 
@@ -38,13 +37,20 @@ public class ImagePack {
 	/** String info about package, must be shown to user */
 	public String toString() {
 		String packInfo = name;
-		if (author != "") {
+		if (!author.isEmpty()) {
 			packInfo += SPLITTER + "Author: " + author;
 		}
 		if (!isFull) {
-			packInfo += SPLITTER + "not finished";
+			packInfo += SPLITTER + "not full";
 		}
 		return packInfo;
+	}
+    /** return */
+	public static ImagePack[] getDefaultPackSet() {
+		ImagePack[] packArray = new ImagePack[2];
+		packArray[0] = new ImagePack("Default", "", "default/");
+		packArray[1] = new ImagePack("Battleship", "Andrés Dugin","battleship/", false);
+		return packArray;
 	}
 
 	// getters
