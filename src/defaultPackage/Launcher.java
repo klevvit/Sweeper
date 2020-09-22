@@ -6,7 +6,7 @@
  */
 package defaultPackage;
 
-public class Launcher {
+public class Launcher {  // TODO deal with copyright
 
 	public static void main(String[] args) {
 		new Game().go();
