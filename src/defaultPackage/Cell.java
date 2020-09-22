@@ -29,6 +29,9 @@ public class Cell extends JPanel implements Comparable<Cell> {
 	private static float scale;
 	private static int size;
 
+	public static final int DEFAULT_SIZE_IN_PIXELS = 16;
+
+
 	private static boolean safeMode = true;
 
 	private boolean isOpened = false;
