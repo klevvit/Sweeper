@@ -1,10 +1,3 @@
-/**
- * @author Kovalenko Lev
- * 
-*/
-/**
- * Copyright © Kovalenko Lev (Sweeper) 2016. All rights reserved.
- */
 package defaultPackage;
 
 import java.awt.BorderLayout;
@@ -22,6 +15,10 @@ import javax.swing.JPanel;
 import borderFragments.BorderFragment;
 import images.Resource;
 
+/**
+ * @author Kovalenko Lev
+ * Copyright © Kovalenko Lev (Sweeper) 2016. All rights reserved.
+ */
 public class Game {
 
 	static JFrame frame;
@@ -101,7 +98,11 @@ public class Game {
         Game.minesCount = minesCount;
         launchNewGame();
     }
-	
+
+    private void createLocateFrameElements() {
+	    // TODO
+    }
+
 	private static void locateFrameAtScreenCenter() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int windowX = (screenSize.width - frame.getWidth()) / 2;
