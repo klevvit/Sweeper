@@ -1,11 +1,9 @@
-/**
- * @author Kovalenko Lev
-*/
-/**
- * Copyright Kovalenko Lev (Sweeper) 2016. All rights reserved.
- */
 package defaultPackage;
 
+/**
+ * @author Kovalenko Lev
+ * Copyright Kovalenko Lev (Sweeper) 2016. All rights reserved.
+ */
 public class MineCounter extends Counter {
 	private int minesCount;
 	private int cellsMarked = 0;
