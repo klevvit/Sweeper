@@ -1,9 +1,3 @@
-/**
- * @author Kovalenko Lev
-*/
-/**
- * Copyright Kovalenko Lev (Sweeper) 2016. All rights reserved.
- */
 package defaultPackage;
 
 import java.awt.BorderLayout;
@@ -12,6 +6,11 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * @deprecated
+ * @author Kovalenko Lev
+ * Copyright © Kovalenko Lev (Sweeper) 2020. All rights reserved.
+ */
 final class HeaderTest {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
