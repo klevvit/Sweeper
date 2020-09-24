@@ -4,6 +4,6 @@
  */
 package images;
 
-public class Resource {
+public class Resource {  // TODO get rid of this crutch
 
 }
