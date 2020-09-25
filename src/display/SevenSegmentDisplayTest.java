@@ -13,6 +13,8 @@ import javax.swing.JPanel;
  */
 final class SevenSegmentDisplayTest {
 	public static void main(String[] args) {
+
+	    // create frame and add our panel
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel(null);
@@ -20,6 +22,7 @@ final class SevenSegmentDisplayTest {
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.setSize(400, 200);
 
+		// create displays and add to panel
 		SevenSegmentDisplay[] d = new SevenSegmentDisplay[11];
 		for (int i = -1; i <= 9; i++) {
 			d[i + 1] = new SevenSegmentDisplay(2);
@@ -27,9 +30,7 @@ final class SevenSegmentDisplayTest {
 			d[i + 1].setLocation((i + 1) * d[i + 1].getWidth(), d[i + 1].getHeight());
 			panel.add(d[i + 1]);
 		}
-		frame.setVisible(true);
-	}
 
-	private SevenSegmentDisplayTest() {
+		frame.setVisible(true);
 	}
 }
