@@ -4,6 +4,8 @@
  */
 package defaultPackage;
 
+import display.MineCounter;
+
 import java.util.ArrayList;
 
 import javax.naming.NoPermissionException;

@@ -2,7 +2,9 @@
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
-package defaultPackage;
+package display;
+
+import defaultPackage.Game;
 
 import java.util.Date;
 

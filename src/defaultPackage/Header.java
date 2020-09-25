@@ -1,6 +1,8 @@
 
 package defaultPackage;
 
+import display.MineCounter;
+import display.TimeCounter;
 import java.awt.Color;
 import javax.swing.JPanel;
 

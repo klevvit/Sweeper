@@ -2,7 +2,9 @@
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
-package defaultPackage;
+package display;
+
+import defaultPackage.Game;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,10 +12,11 @@ import java.util.InvalidPropertiesFormatException;
 
 import javax.swing.JPanel;
 
-public class Display extends JPanel {
-	/**
-	 * 
-	 */
+/**
+ *  JPanel with controllable image of 7-segment display.
+ */
+class SevenSegmentDisplay extends JPanel {
+
 	private static final long serialVersionUID = 9019126328963812906L;
 	private static String displayFolder;
 	private static Image imageMinus;
@@ -43,7 +46,7 @@ public class Display extends JPanel {
 		}
 	}
 
-	public Display(float setScale) {
+	public SevenSegmentDisplay(float setScale) {
 		scale = setScale;
 		width = (int) (scale * DEFAULT_WIDTH);
 		height = (int) (scale * DEFAULT_HEIGHT);

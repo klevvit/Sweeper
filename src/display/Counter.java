@@ -1,20 +1,27 @@
-/**
- * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
- */
-package defaultPackage;
+package display;
+
+import defaultPackage.Game;
 
 import javax.swing.JPanel;
 
+/**
+ * Class with 3 7-segment displays
+ * @author Kovalenko Lev
+ * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
+ */
 public class Counter {
-	protected int displayValue;
-	protected JPanel myPanel = new JPanel(null);
-	protected static float scale = Game.getScale();
-	protected final Display[] display = new Display[3];
+
+    int displayValue;
+
+	private JPanel myPanel = new JPanel(null);
+
+	private static float scale = Game.getScale();
+
+	private final SevenSegmentDisplay[] display = new SevenSegmentDisplay[3];
 
 	protected void create() {
 		for (int i = 0; i < display.length; i++) {
-			display[i] = new Display(scale);
+			display[i] = new SevenSegmentDisplay(scale);
 		}
 		setLocationAndSize();
 	}
@@ -56,7 +63,7 @@ public class Counter {
 	}
 
 	public void resetImages() {
-		Display.resetImages();
+		SevenSegmentDisplay.resetImages();
 		resetCounter();
 	}
 

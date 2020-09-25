@@ -1,4 +1,4 @@
-package defaultPackage;
+package display;
 
 /**
  * @author Kovalenko Lev

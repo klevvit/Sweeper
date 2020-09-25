@@ -1,10 +1,4 @@
-/**
- * @author Kovalenko Lev
-*/
-/**
- * Copyright Kovalenko Lev (Sweeper) 2016. All rights reserved.
- */
-package defaultPackage;
+package display;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,13 +16,13 @@ final class SevenSegmentDisplayTest {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel(null);
-		panel.setBackground(Color.CYAN);
+		panel.setBackground(Color.GRAY);
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.setSize(400, 200);
 
-		Display[] d = new Display[11];
+		SevenSegmentDisplay[] d = new SevenSegmentDisplay[11];
 		for (int i = -1; i <= 9; i++) {
-			d[i + 1] = new Display(2);
+			d[i + 1] = new SevenSegmentDisplay(2);
 			d[i + 1].setDigit(i);
 			d[i + 1].setLocation((i + 1) * d[i + 1].getWidth(), d[i + 1].getHeight());
 			panel.add(d[i + 1]);
@@ -36,6 +30,6 @@ final class SevenSegmentDisplayTest {
 		frame.setVisible(true);
 	}
 
-	private DisplayTest() {
+	private SevenSegmentDisplayTest() {
 	}
 }
