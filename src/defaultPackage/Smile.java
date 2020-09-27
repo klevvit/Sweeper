@@ -50,16 +50,12 @@ public class Smile extends JPanel {
 	}
 
 	public void resetImages() {
-		try {
-			imageFolder = Game.getImagesPath() + "smile/";
-		} catch (InvalidPropertiesFormatException ex) {
-			ex.printStackTrace();
-		}
-		imageSmile = Game.getImage(imageFolder + "Smile.png");
-		imagePressed = Game.getImage(imageFolder + "Pressed.png");
-		imageScared = Game.getImage(imageFolder + "Scared.png");
-		imageDead = Game.getImage(imageFolder + "Dead.png");
-		imageVictory = Game.getImage(imageFolder + "Victory.png");
+		imageFolder = "smile";
+		imageSmile = Game.getPackNow().getImage(imageFolder, "Smile");
+		imagePressed = Game.getPackNow().getImage(imageFolder, "Pressed");
+		imageScared = Game.getPackNow().getImage(imageFolder, "Scared");
+		imageDead = Game.getPackNow().getImage(imageFolder, "Dead");
+		imageVictory = Game.getPackNow().getImage(imageFolder, "Victory");
 
 		if (!isPressed) {
 			if (isVictory) {

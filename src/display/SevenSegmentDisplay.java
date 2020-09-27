@@ -1,24 +1,22 @@
-/**
- * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
- */
+
 package display;
 
 import defaultPackage.Game;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.InvalidPropertiesFormatException;
 
 import javax.swing.JPanel;
 
 /**
  *  JPanel with controllable image of 7-segment display.
+ *  @author Kovalenko Lev
+ *  Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
 class SevenSegmentDisplay extends JPanel {
 
-	private static final long serialVersionUID = 9019126328963812906L;
-	private static String displayFolder;
+//	private static final long serialVersionUID = 9019126328963812906L; // todo remove
+	private static final String DISPLAY_FOLDER_NAME = "display";
 	private static Image imageMinus;
 	private static Image[] image = new Image[10];
 	private Image imageNow = imageMinus;
@@ -35,14 +33,9 @@ class SevenSegmentDisplay extends JPanel {
 	}
 
 	public static void resetImages() {
-		try {
-			displayFolder = Game.getImagesPath() + "display/";
-		} catch (InvalidPropertiesFormatException ex) {
-			ex.printStackTrace();
-		}
-		imageMinus = Game.getImage(displayFolder + "-.png");
+		imageMinus = Game.getPackNow().getImage(DISPLAY_FOLDER_NAME, "-");
 		for (int i = 0; i <= 9; i++) {
-			image[i] = Game.getImage(displayFolder + i + ".png");
+			image[i] = Game.getPackNow().getImage(DISPLAY_FOLDER_NAME, Integer.toString(i));
 		}
 	}
 

@@ -8,12 +8,10 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import borderFragments.BorderFragment;
-import images.Resource;
 
 /**
  * @author Kovalenko Lev
@@ -61,9 +59,9 @@ public class Game {
 	
 	private ArrayList<Image> makeIconList() {
         ArrayList<Image> iconList = new ArrayList<>();
-        iconList.add(getImage("Icon16.png"));
-        iconList.add(getImage("Icon24.png"));
-        iconList.add(getImage("Icon32.png"));
+//        iconList.add(getImage("Icon16.png"));
+//        iconList.add(getImage("Icon24.png"));
+//        iconList.add(getImage("Icon32.png"));  todo uncomment
         return iconList;
     }
     
@@ -167,13 +165,6 @@ public class Game {
 		repaint();
 	}
 
-	public static Image getImage(String path) {
-		if (Resource.class.getResource(path) == null) {
-			System.out.println("Null resource: " + path);
-		}
-		return new ImageIcon(Resource.class.getResource(path)).getImage();
-	}
-
 	// setters and getters
 
 	public static float getScale() {
@@ -200,21 +191,18 @@ public class Game {
 		return minesCount;
 	}
 
-	public static String getPackPath() {
-		return packNow.getPath();
-	}
-
-	public static String getImagesPath() throws InvalidPropertiesFormatException {
-		String scaleFolder;
-		if (scale % 1.5 == 0) {
-			scaleFolder = "1.5x/";
-		} else if (scale % 1 == 0) {
-			scaleFolder = "1.0x/";
-		} else
-			throw new InvalidPropertiesFormatException("Incorrect scale.");
-
-		return packNow.getPath() + scaleFolder;
-	}
+//	@deprecated
+// public static String getImagesPath() throws InvalidPropertiesFormatException {
+//		String scaleFolder;
+//		if (scale % 1.5 == 0) {
+//			scaleFolder = "1.5x/";
+//		} else if (scale % 1 == 0) {
+//			scaleFolder = "1.0x/";
+//		} else
+//			throw new InvalidPropertiesFormatException("Incorrect scale.");
+//
+//		return packNow.getRootPath() + scaleFolder;
+//	}
 
 	public static ImagePack[] getPacks() {
 		return PACK;

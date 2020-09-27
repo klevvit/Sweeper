@@ -47,19 +47,15 @@ public class Cell extends JPanel implements Comparable<Cell> {
 	}
 
 	public static void resetImages() {
-		try {
-			cellFolder = Game.getImagesPath() + "cells/";
-		} catch (InvalidPropertiesFormatException ex) {
-			ex.printStackTrace();
-		}
+		cellFolder = "cells";
 
-		imageClosed = Game.getImage(cellFolder + "Closed.png");
-		imageFlag = Game.getImage(cellFolder + "Flag.png");
-		imageMine = Game.getImage(cellFolder + "Mine.png");
-		imageMineWrong = Game.getImage(cellFolder + "MineWrong.png");
-		imageMineExploded = Game.getImage(cellFolder + "MineExploded.png");
+		imageClosed = Game.getPackNow().getImage(cellFolder, "Closed");
+		imageFlag = Game.getPackNow().getImage(cellFolder, "Flag");
+		imageMine = Game.getPackNow().getImage(cellFolder, "Mine");
+		imageMineWrong = Game.getPackNow().getImage(cellFolder, "MineWrong");
+		imageMineExploded = Game.getPackNow().getImage(cellFolder, "MineExploded");
 		for (int i = 0; i <= 8; i++) {
-			imageDigit[i] = Game.getImage(cellFolder + i + ".png");
+			imageDigit[i] = Game.getPackNow().getImage(cellFolder, Integer.toString(i));
 		}
 
 	}

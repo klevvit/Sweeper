@@ -18,7 +18,7 @@ public class BorderFragment extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1044860589052129107L;
-	protected static final String MY_FOLDER = "borderFragments/";
+	protected static final String MY_FOLDER = "borderFragments";
 	protected int sizeX;
 	protected int sizeY;
 	protected static int sizeBig = (int) (16 * Game.getScale());
@@ -39,11 +39,7 @@ public class BorderFragment extends JPanel {
 	}
 
 	public void resetImage() {
-		try {
-			myImage = Game.getImage(Game.getImagesPath() + MY_FOLDER + this.getClass().getSimpleName() + ".png");
-		} catch (InvalidPropertiesFormatException e) {
-			e.printStackTrace();
-		}
+			myImage = Game.getPackNow().getImage(MY_FOLDER, this.getClass().getSimpleName());
 	}
 
 	// setters and getters
