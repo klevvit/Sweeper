@@ -1,14 +1,10 @@
 package defaultPackage;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-
 
 /**
  * Class for simple work with different image packs. An object of this class represents one definite image pack.
@@ -17,25 +13,34 @@ import java.net.URL;
  */
 public class ImagePack {
 
-    /** path to root folder with images */
-//    private final Path rootPath = Paths.get("src/images");
-
-    private final String packFolderName;
-
-    private static final String DEFAULT_EXTENSION = "png";
-
 	/** image pack name; will be shown to user */
 	private final String name;
 
 	/** image pack author name; will be shown to user */
 	private final String author;
 
+	/** name of root folder for this package; will be used in path; e.g. "default" */
+    private final String packFolderName;
+
 	/** if false, user will see a remark that package is not finished */
 	private final boolean isFull;
+
+	/** extension that images inside image pack have by default */
+    private static final String DEFAULT_EXTENSION = "png";
 
 	/** symbols which visually split info parts about package (name, author, etc.) when displaying them to user */
 	private static final String SPLITTER = "; ";
 
+	/** name of folder with image packs inside project */
+	private static final String PROJECT_IMAGES_FOLDER = "images";
+
+    /**
+     * Create ImagePack object that will load pictures from <code>packFolderName</code> folder.
+     * @param name image pack name; will be shown to user
+     * @param author image pack author name; will be shown to user
+     * @param packFolderName name of root folder for this package; will be used in path; e.g. "default"
+     * @param isFull if false, user will see a remark that package is not finished
+     */
 	public ImagePack(String name, String author, String packFolderName, boolean isFull) {
 		this.name = name;
 		this.author = author;
@@ -43,28 +48,38 @@ public class ImagePack {
         this.isFull = isFull;
 	}
 
+    /**
+     * Create ImagePack object that will load pictures from <code>packFolderName</code> folder.
+     * Considered to contain all necessary images.
+     * @param name image pack name; will be shown to user
+     * @param author image pack author name; will be shown to user
+     * @param packFolderName name of root folder for this package; will be used in path; e.g. "default"
+     */
 	public ImagePack(String name, String author, String packFolderName) {
 		this(name, author, packFolderName, true);
 	}
 
-	/**Gives Image class that can be drawn by java.awt.Graphics.drawImage
-     * @param imageCategory name of the catalog with required image; e.g. <i>"borderFragments"</i>
-     * @param fileName name of file of the required image <b>without extension</b>; e.g. <i>"NorthWest"</i>
-     * @param extension extension of image file <b>without dot</b>; e.g. <i>"jpg"</i>;<br>
-     *                  - <i>"png"</i> if not stated
-     * @return java.awt.Image class of required image
+	/**
+     * For asked image creates Image class that can be drawn by <code>java.awt.Graphics.drawImage</code>.
+     * @param imageCategory name of the catalog with required image; e.g. <code>"borderFragments"</code>
+     * @param fileName file name of the required image <b>without extension</b>; e.g. <code>"NorthWest"</code>
+     * @param extension extension of image file <b>without dot</b>; e.g. <code>"jpg"</code>;
+     *                  <code>{@value #DEFAULT_EXTENSION}</code> if not stated
+     * @return <code>java.awt.Image</code> class of required image
      */
 	public Image getImage(String imageCategory, String fileName, String extension) {
-        String scaleFolderName = getBestScaleFolderName(Game.getScale());
+        String scaleFolderName = getScaleFolderName(Game.getScale());
         String imagePath = getRoot() + "/" + packFolderName + "/" + scaleFolderName + "/" + imageCategory + "/" +
                 fileName + "." + extension;
         try {
             URL imageURL = new URL(imagePath);
+            // check whether access to image is successful
             if (ImageIO.read(imageURL) == null) {
                 throw new NullPointerException("Null image source");
             }
-            Image result = new ImageIcon(imageURL).getImage();
-            return result;
+
+            return new ImageIcon(imageURL).getImage();
+
         } catch (IOException | NullPointerException e) {
             System.err.println("Image load error!\n" +
                     "   packFolderName: " + packFolderName + "\n" +
@@ -80,33 +95,31 @@ public class ImagePack {
     }
 
     /**
-     * Get URL String path to <i>"images"</i> folder inside project.
-     * @return absolute path to "images" folder with "file:" or "jar:file" prefix (whether code is packed inside jar or
-     * not).
+     * For asked image creates Image class that can be drawn by <code>java.awt.Graphics.drawImage</code>. Image file is
+     * considered to have <code>{@value #DEFAULT_EXTENSION}</code> extension.
+     * @param imageCategory name of the catalog with required image; e.g. <code>"borderFragments"</code>
+     * @param fileName file name of the required image <b>without extension</b>; e.g. <code>"NorthWest"</code>
+     * @return <code>java.awt.Image</code> of required image
      */
-    private String getRoot() {
-        // getResource() inside .jar file has double prefix "jar:file:", and getPath() method removes only the first
-        // one. That's why we need replaceFirst() method.
-        return this.getClass().getResource("/images").toString();
+    public Image getImage(String imageCategory, String fileName) {
+	    return getImage(imageCategory, fileName, DEFAULT_EXTENSION);
     }
 
-//    public static Image getImage(String path) {
-//        if (Resource.class.getResource(path) == null) {
-//            System.err.println("Image loading error\n" +
-//                    "    Null resource: " + path);
-//        }
-//        return new ImageIcon(Resource.class.getResource(path)).getImage();
-//    }
-
-    public Image getImage(String folderName, String fileName) {
-	    return getImage(folderName, fileName, DEFAULT_EXTENSION);
+    /**
+     * Returns String path to folder with image packs that is located inside the project.
+     * @return String absolute path to "images" folder with "file:" or "jar:file:" prefix (whether code is packed inside
+     * jar or not).
+     */
+    private static String getRoot() {
+        // slash before PROJECT_IMAGES_FOLDER means making absolute path from the root of project
+        return ImagePack.class.getResource("/" + PROJECT_IMAGES_FOLDER).toString();
     }
 
     /**Returns name of folder with the best texture size for given scale.
      * @param scale scale multiplier that was set for the image size
      * @return String with folder name: "1.0x" if scale is 1 or 2, "1.5x" otherwise.
      */
-    private String getBestScaleFolderName(float scale) {
+    private static String getScaleFolderName(float scale) {
 	    if (Float.compare(scale, 1f) == 0)
 	        return "1.0x";
 	    if (Float.compare(scale, 2f) == 0)
@@ -125,7 +138,7 @@ public class ImagePack {
         return packArray;
     }
 
-    /** String info about package, must be shown to user */
+    /** String info about package, considered to be shown to user */
     public String toString() {
         String packInfo = name;
         if (!author.isEmpty()) {
