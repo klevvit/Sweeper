@@ -1,14 +1,17 @@
 package defaultPackage;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 
 /**
- * Class for simple work with different image packs.
+ * Class for simple work with different image packs. An object of this class represents one definite image pack.
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
@@ -44,7 +47,7 @@ public class ImagePack {
 		this(name, author, packFolderName, true);
 	}
 
-	/**Gives Image class to be drawn by java.awt.Graphics.drawImage
+	/**Gives Image class that can be drawn by java.awt.Graphics.drawImage
      * @param imageCategory name of the catalog with required image; e.g. <i>"borderFragments"</i>
      * @param fileName name of file of the required image <b>without extension</b>; e.g. <i>"NorthWest"</i>
      * @param extension extension of image file <b>without dot</b>; e.g. <i>"jpg"</i>;<br>
@@ -52,17 +55,28 @@ public class ImagePack {
      * @return java.awt.Image class of required image
      */
 	public Image getImage(String imageCategory, String fileName, String extension) {
-        String imagePath = /* ROOT_PATH.toString() */ getRoot() + "/" + packFolderName + "/"
-                + getBestScaleFolderName(Game.getScale()) + "/"
-                + imageCategory + "/" + fileName + "." + extension;
-//        System.out.println(Paths.get(imagePath).toAbsolutePath());
-        System.out.println("v6" + imagePath);
+        String scaleFolderName = getBestScaleFolderName(Game.getScale());
+        String imagePath = getRoot() + "/" + packFolderName + "/" + scaleFolderName + "/" + imageCategory + "/" +
+                fileName + "." + extension;
         try {
-            return new ImageIcon(new URL(imagePath)).getImage();
-        } catch (MalformedURLException e) {
+            URL imageURL = new URL(imagePath);
+            if (ImageIO.read(imageURL) == null) {
+                throw new NullPointerException("Null image source");
+            }
+            Image result = new ImageIcon(imageURL).getImage();
+            return result;
+        } catch (IOException | NullPointerException e) {
+            System.err.println("Image load error!\n" +
+                    "   packFolderName: " + packFolderName + "\n" +
+                    "   scale: " + scaleFolderName + "\n" +
+                    "   imageCategory: " + imageCategory + "\n" +
+                    "   fileName: " + fileName + "\n" +
+                    "   extension: " + extension + "\n" +
+                    "   root: " + getRoot() + "\n" +
+                    "   full path: " + imagePath);
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     /**
