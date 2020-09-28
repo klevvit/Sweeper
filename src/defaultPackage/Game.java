@@ -1,15 +1,10 @@
 package defaultPackage;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.tools.Tool;
 
 import borderFragments.BorderFragment;
 
@@ -47,7 +42,7 @@ public class Game {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle("Sweeper");
-		frame.setIconImages(makeIconList());
+		setIcon();
 
 		menu = new Menu();
 		frame.getContentPane().add(BorderLayout.NORTH, menu.getMenuBar());
@@ -56,15 +51,18 @@ public class Game {
         frame.addKeyListener(new KeyReader());  // key bindings for opening cells, setting flags, etc.
 		frame.setVisible(true);
 	}
-	
-	private ArrayList<Image> makeIconList() {
-        ArrayList<Image> iconList = new ArrayList<>();
-//        iconList.add(getImage("Icon16.png"));
-//        iconList.add(getImage("Icon24.png"));
-//        iconList.add(getImage("Icon32.png"));  todo uncomment
-        return iconList;
-    }
-    
+
+	private void setIcon() {
+		ArrayList<Image> iconList = packNow.getIconList(new String[]{"icon16.png", "icon24.png", "icon32.png"});
+
+		// for MacOs and other systems which support this method
+		Taskbar taskbar = Taskbar.getTaskbar();
+		taskbar.setIconImage(iconList.get(2));  // todo maybe add try-catch
+
+		// for Windows and other systems which support this method
+		frame.setIconImages(iconList);
+	}
+
 	public static void launchNewGame() {
 		removeMainPanel();
 		header = new Header(cellCountX);
@@ -190,19 +188,6 @@ public class Game {
 	public static int getMinesCount() {
 		return minesCount;
 	}
-
-//	@deprecated
-// public static String getImagesPath() throws InvalidPropertiesFormatException {
-//		String scaleFolder;
-//		if (scale % 1.5 == 0) {
-//			scaleFolder = "1.5x/";
-//		} else if (scale % 1 == 0) {
-//			scaleFolder = "1.0x/";
-//		} else
-//			throw new InvalidPropertiesFormatException("Incorrect scale.");
-//
-//		return packNow.getRootPath() + scaleFolder;
-//	}
 
 	public static ImagePack[] getPacks() {
 		return PACK;

@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Class for simple work with different image packs. An object of this class represents one definite image pack.
@@ -34,8 +35,11 @@ public class ImagePack {
 	/** name of folder with image packs inside project */
 	private static final String PROJECT_IMAGES_FOLDER = "images";
 
+	/** name of folder with app icons inside image pack */
+	private static final String ICONS_FOLDER = "icons";
+
     /**
-     * Create ImagePack object that will load pictures from <code>packFolderName</code> folder.
+     * Creates ImagePack object that will load pictures from <code>packFolderName</code> folder.
      * @param name image pack name; will be shown to user
      * @param author image pack author name; will be shown to user
      * @param packFolderName name of root folder for this package; will be used in path; e.g. "default"
@@ -49,7 +53,7 @@ public class ImagePack {
 	}
 
     /**
-     * Create ImagePack object that will load pictures from <code>packFolderName</code> folder.
+     * Creates ImagePack object that will load pictures from <code>packFolderName</code> folder.
      * Considered to contain all necessary images.
      * @param name image pack name; will be shown to user
      * @param author image pack author name; will be shown to user
@@ -127,8 +131,41 @@ public class ImagePack {
 	    return "1.5x";
     }
 
-    // todo
-//    public Image getIcon(...) {}
+    /**
+     * Creates Image objects for images from <code>{@value ICONS_FOLDER}</code> folder and pushes them them into
+     * <code>ArrayList</code>. In case of loading errors exits correctly and prints all the information to standard
+     * error stream.
+     * @param imageNames String array of icon filenames <b>with</b> extension; e.g. <code>"icon16.png"</code>
+     * @return {@code ArrayList<Image>} with <code>Image</code> objects for given images; partially filled or empty if
+     * some errors have happened
+     */
+    public ArrayList<Image> getIconList(String[] imageNames) {
+        ArrayList<Image> iconList = new ArrayList<>();
+        for (String imageName : imageNames) {
+
+            String imagePath = getRoot() + "/" + packFolderName + "/" + ICONS_FOLDER + "/" + imageName;
+
+            try {
+                URL imageURL = new URL(imagePath);
+                // check whether access to image is successful
+                if (ImageIO.read(imageURL) == null) {
+                    throw new NullPointerException("Null image source");
+                }
+
+                iconList.add(new ImageIcon(imageURL).getImage());
+
+            } catch (IOException | NullPointerException e) {
+                System.err.println("Icon image load error!\n" +
+                        "   packFolderName: " + packFolderName + "\n" +
+                        "   ICONS_FOLDER: " + ICONS_FOLDER + "\n" +
+                        "   imageName: " + imageName + "\n" +
+                        "   root: " + getRoot() + "\n" +
+                        "   full path: " + imagePath);
+                e.printStackTrace();
+            }
+        }
+        return iconList;
+    }
 
     /** return default ImagePack set that is initially among project files */
     public static ImagePack[] getDefaultPackSet() {
