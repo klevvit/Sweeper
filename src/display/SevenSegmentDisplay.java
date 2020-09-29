@@ -16,10 +16,13 @@ import javax.swing.JPanel;
 class SevenSegmentDisplay extends JPanel {
 
 //	private static final long serialVersionUID = 9019126328963812906L; // todo remove
-	private static final String DISPLAY_FOLDER_NAME = "display";
-	private static Image imageMinus;
+	private static final String Image_FOLDER_NAME = "display";
+
 	private static Image[] image = new Image[10];
+	private static Image imageMinus;
+
 	private Image imageNow = imageMinus;
+
 	private static float scale;
 	public static final int DEFAULT_WIDTH = 13;
 	public static final int DEFAULT_HEIGHT = 23;
@@ -33,9 +36,9 @@ class SevenSegmentDisplay extends JPanel {
 	}
 
 	public static void resetImages() {
-		imageMinus = Game.getPackNow().getImage(DISPLAY_FOLDER_NAME, "-");
+		imageMinus = Game.getPackNow().getImage(Image_FOLDER_NAME, "-");
 		for (int i = 0; i <= 9; i++) {
-			image[i] = Game.getPackNow().getImage(DISPLAY_FOLDER_NAME, Integer.toString(i));
+			image[i] = Game.getPackNow().getImage(Image_FOLDER_NAME, Integer.toString(i));
 		}
 	}
 
