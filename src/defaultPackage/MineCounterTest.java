@@ -21,13 +21,12 @@ final class MineCounterTest {
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.setSize(400, 200);
 
-		MineCounter m = new MineCounter();
-		m.setMinesCount(1100);
-		JPanel counter = m.getPanel();
+		MineCounter counter = new MineCounter();
+		counter.setMinesCount(1100);
 		panel.add(counter);
 		frame.setVisible(true);
 		for (int i = 1; i <= 1500; i++) {
-			m.incCellsMarked();
+			counter.incCellsMarked();
 			frame.repaint();
 			try {
 				Thread.sleep(5);
