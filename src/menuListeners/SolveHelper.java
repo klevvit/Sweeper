@@ -49,7 +49,7 @@ public class SolveHelper implements ActionListener {
 //			Set<CellGroup> groupsToCheck = new Set<CellGroup>(map.values()); //WTF???
 //			do {
 				
-				//TODO some deep shit here
+				//TODO some deep crap here
 //				primitiveSolve(groupsToCheck);
 				
 //				groupsToCheck = new Set(combineGroups());	
