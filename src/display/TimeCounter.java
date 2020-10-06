@@ -1,7 +1,5 @@
 package display;
 
-import defaultPackage.Game;
-
 import java.util.Date;
 
 /**

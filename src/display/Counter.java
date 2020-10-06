@@ -1,9 +1,7 @@
 package display;
 
-import defaultPackage.Game;
 import defaultPackage.WindowElement;
 
-import javax.swing.JPanel;
 import java.awt.*;
 
 /**
@@ -48,6 +46,7 @@ public class Counter extends WindowElement {
 		} else {
 			display[0].setDigit(toShow / 100 % 10);
 		}
+
 		display[1].setDigit(Math.abs(toShow) / 10 % 10);
 		display[2].setDigit(Math.abs(toShow) % 10);
 	}

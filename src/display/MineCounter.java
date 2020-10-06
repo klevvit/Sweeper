@@ -12,13 +12,13 @@ public class MineCounter extends Counter {
 		setValue(minesCount - cellsMarked);
 	}
 
-	public void setMinesCount(int mc) {
-		minesCount = Math.max(0, mc);
+	public void setMinesCount(int count) {
+		minesCount = Math.max(0, count);
 		setValue(minesCount - cellsMarked);
 	}
 
-	public void setCellsMarked(int mm) {
-		cellsMarked = mm;
+	public void setCellsMarked(int count) {
+		cellsMarked = count;
 		setValue(minesCount - cellsMarked);
 	}
 
