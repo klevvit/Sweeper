@@ -5,55 +5,31 @@ package display;
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
 public class MineCounter extends Counter {
-	private int minesCount;
+	private int minesCount = 0;
 	private int cellsMarked = 0;
 
 	public MineCounter() {
-		create();
-		reset();
+		setValue(minesCount - cellsMarked);
 	}
-
-	private void reset() {
-		if (minesCount - cellsMarked > 999) {
-			displayValue = 999;
-		} else if (minesCount - cellsMarked < -99) {
-			displayValue = -99;
-		} else {
-			displayValue = minesCount - cellsMarked;
-		}
-		resetCounter();
-	}
-
-	// setters and getters
 
 	public void setMinesCount(int mc) {
 		minesCount = Math.max(0, mc);
-		reset();
-	}
-
-	public void incMinesCount() {
-		minesCount++;
-		reset();
-	}
-
-	public void decMinesCount() {
-		minesCount--;
-		reset();
+		setValue(minesCount - cellsMarked);
 	}
 
 	public void setCellsMarked(int mm) {
 		cellsMarked = mm;
-		reset();
+		setValue(minesCount - cellsMarked);
 	}
 
 	public void incCellsMarked() {
 		cellsMarked++;
-		reset();
+		setValue(minesCount - cellsMarked);
 	}
 
 	public void decCellsMarked() {
 		cellsMarked--;
-		reset();
+		setValue(minesCount - cellsMarked);
 	}
 
 }

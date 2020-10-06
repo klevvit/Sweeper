@@ -44,11 +44,11 @@ public class Header {
 		smile.addMouseListener(new SmileListener());
 		myPanel.add(smile);
 
-        JPanel mineCounterPanel = mineCounter.getPanel();
+        JPanel mineCounterPanel = mineCounter; // todo just changed mineCounter.getPanel() to mineCounter
 		mineCounterPanel.setLocation((int) (6 * scale), (myPanel.getHeight() - mineCounterPanel.getHeight()) / 2);  // TODO: what's the constant?
 		myPanel.add(mineCounterPanel);
 
-        JPanel timerPanel = timer.getPanel();
+        JPanel timerPanel = timer; // todo just changed timer.getPanel() to timer
 		timerPanel.setLocation(myPanel.getWidth() - (int) (6 * scale) - timerPanel.getWidth(),  // TODO: what's the constant?
 				(myPanel.getHeight() - mineCounterPanel.getHeight()) / 2);
 		myPanel.add(timerPanel);
@@ -57,14 +57,14 @@ public class Header {
 	public void resetScale() {
 		scale = Game.getScale();
 		smile.setScale(scale);
-		mineCounter.setScale(scale);
-		timer.setScale(scale);
+//		mineCounter.setScale(scale); todo just commented
+//		timer.setScale(scale);
 		create();
 	}
 
 	public void resetImages() {
 		smile.resetImages();
-		mineCounter.resetImages();
+		mineCounter.loadImages();
 
 	}
 

@@ -17,18 +17,23 @@ final class SevenSegmentDisplayTest {
 	    // create frame and add our panel
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		JPanel panel = new JPanel(null);
 		panel.setBackground(Color.GRAY);
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.setSize(400, 200);
 
-		// create displays and add to panel
+		// create displays with all possible images and add to panel
 		SevenSegmentDisplay[] d = new SevenSegmentDisplay[11];
+
 		for (int i = -1; i <= 9; i++) {
-			d[i + 1] = new SevenSegmentDisplay(2);
-			d[i + 1].setDigit(i);
-			d[i + 1].setLocation((i + 1) * d[i + 1].getWidth(), d[i + 1].getHeight());
-			panel.add(d[i + 1]);
+			int ind = i + 1;  // index of the element
+
+			d[ind] = new SevenSegmentDisplay();
+			d[ind].setDigit(i);
+			d[ind].setLocation((ind) * d[ind].getWidth(), d[ind].getHeight());
+
+			panel.add(d[ind]);
 		}
 
 		frame.setVisible(true);

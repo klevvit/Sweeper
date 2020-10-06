@@ -1,40 +1,36 @@
-/**
- * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
- */
 package display;
 
 import defaultPackage.Game;
 
 import java.util.Date;
 
+/**
+ * @author Kovalenko Lev
+ * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
+ */
 public class TimeCounter extends Counter implements Runnable {
 	private long time;
 	private long beginTime;
 	private boolean isOn;
 
 	public TimeCounter() {
-		create();
 		setValue(0);
 		isOn = false;
 	}
 
 	@Override
 	public void run() {
-		start();
-	}
-
-	protected void start() {
 		isOn = true;
 		setValue(0);
 		beginTime = new Date().getTime();
 
 		while (isOn) {
 			resetTime();
-			/*
-			 * try { Thread.sleep(2000); } catch (InterruptedException e) {
-			 * e.printStackTrace(); }
-			 */
+			 try {
+			 	Thread.sleep(10);  // todo select best constant
+			 } catch (InterruptedException e) {
+			 	e.printStackTrace();
+			 }
 		}
 	}
 
@@ -44,16 +40,14 @@ public class TimeCounter extends Counter implements Runnable {
 
 	public void resetTime() {
 		time = new Date().getTime();
-		if (displayValue != (int) (time - beginTime) / 1000 + 1) {
-			setValue((int) (time - beginTime) / 1000 + 1);
-			Game.repaint();
+		int valueNow = (int) (time - beginTime) / 1000 + 1;  // todo is this formula correct?
+
+		if (getValue() != valueNow) {
+			setValue(valueNow);
+			repaint();
 		}
 	}
 
-	/*
-	 * public void setTime(double t) { time = t; displayValue = (int) time;
-	 * SweeperGame.repaint(); }
-	 */
 	public double getTime() {
 		return time;
 	}
