@@ -38,11 +38,10 @@ public class TimeCounter extends Counter implements Runnable {
 
 	public void resetTime() {
 		time = new Date().getTime();
-		int valueNow = (int) (time - beginTime) / 1000 + 1;  // todo is this formula correct?
+		int valueNow = (int) (time - beginTime) / 1000 + 1;  // show seconds rounded up
 
 		if (getValue() != valueNow) {
 			setValue(valueNow);
-			repaint();
 		}
 	}
 

@@ -44,13 +44,23 @@ class SevenSegmentDisplay extends Drawable {
 	 * @param d digit to be shown; -1 if "minus" needed.
 	 */
 	public void setDigit(int d) {
+
 		if (d >= -1 && d <= 9) {
+
+			Image newImage;
+
 			if (d == -1) {
-				imageNow = imageMinus;
+				newImage = imageMinus;
 			} else {
-				imageNow = image[d];
+				newImage = image[d];
+			}
+
+			if (!newImage.equals(imageNow)) {
+				imageNow = newImage;
+				repaint();
 			}
 		}
+
 	}
 
 	/** Equivalent to a function call <code>setDigit(-1)</code>. */
