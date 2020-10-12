@@ -1,7 +1,3 @@
-/**
- * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
- */
 package defaultPackage;
 
 import display.MineCounter;
@@ -11,6 +7,10 @@ import java.util.ArrayList;
 import javax.naming.NoPermissionException;
 import javax.swing.JPanel;
 
+/**
+ * @author Kovalenko Lev
+ * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
+ */
 public class Minefield {
 
 	private boolean isMined = false;
@@ -101,8 +101,9 @@ public class Minefield {
 					}
 				}
 				Cell.setSafeMode(true);
-				Thread timerThread = new Thread(Game.getHeader().getTimer(), "TimerThread");
-				timerThread.start();
+//				Thread timerThread = new Thread(Game.getHeader().getTimer(), "TimerThread");
+//				timerThread.start();  todo just changed to the next line
+				Game.getHeader().getTimer().start();
 				isMined = true;
 			} catch (NoPermissionException nex) {
 				nex.printStackTrace();

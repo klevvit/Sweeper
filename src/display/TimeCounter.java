@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Class that displays timer and can start-stop it.
  * Important: <code>stop()</code> this timer before losing link to this object!
- * Or just use this one timer object instead.
+ * Or just use the same timer object instead.
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  * todo timer doesn't stop after pressing smile or starting a new game while current game is on; another timer starts simultaneously.
@@ -22,13 +22,6 @@ public class TimeCounter extends Counter {
 		{
 			setValue(getValue() + 1);
 
-			try {
-				if(getValue() % 4 == 0)
-				Thread.sleep(2200);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
 			// Standard javax.swing.Timer is well-optimised but slower than real-time one and accumulates noticeable
 			// error. For me it's about 1-second difference every 500 seconds.
 			// So every TICKS_CORRECTION_INTERVAL ticks we compare time with the computer clock and set the next
@@ -40,21 +33,14 @@ public class TimeCounter extends Counter {
 
 				// if lag > 1 second, tillNextSecond is negative
 				long secondsShift = tillNextSecond > 0 ? 0 : -tillNextSecond / 1000 + 1;
-				long sleepTime = tillNextSecond > 0 ? tillNextSecond :
-						(tillNextSecond + 1000 * secondsShift);  // same as adding thousands until result > 0
+				long sleepTime = secondsShift > 0 ? tillNextSecond :  // equals tillNextSecond if it's > 0
+						(tillNextSecond + 1000 * secondsShift);  // same as adding thousands until result is > 0
 
 				if (secondsShift > 0) {
 					setValue(getValue() + (int) secondsShift);
 				}
 
-				System.out.println("timeFromStart: " + timeFromStart + "\n" +
-						"tillNextSecond: " + tillNextSecond + "\n" +
-						"secondsShift: " + secondsShift + "\n" +
-						"sleepTime:" + sleepTime);  // todo remove
-
 				stop();
-
-				System.out.println("stopped successfully");  // todo remove
 
 				Runnable sleepAndWake = () -> {
 					try {
@@ -64,16 +50,12 @@ public class TimeCounter extends Counter {
 					}
 
 					setValue(getValue() + 1);
-					System.out.println("slept successfully, new value = " + getValue());  // todo remove
 					resume();
 				};
 
 				Thread thread = new Thread(sleepAndWake);
 				thread.start();
 			}
-
-			System.out.println("Timer: " + getValue());  // todo remove
-			System.out.println("Time:  " + ((new Date().getTime() - beginTime + 0.0) / 1000 + 1) );  // todo remove
 		});
 
 		timer.setRepeats(true);
@@ -91,7 +73,7 @@ public class TimeCounter extends Counter {
 		timer.start();
 	}
 
-	/** todo */
+	/** Launches timer from its current value. */
 	public void resume() {
 		timer.start();
 	}
@@ -100,6 +82,7 @@ public class TimeCounter extends Counter {
 	public void stop() {
 		timer.stop();
 	}
+
 	/** Stops timer if it was launched and displays zero. */
 	public void reset() {
 		timer.stop();
