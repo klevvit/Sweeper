@@ -1,5 +1,5 @@
 
-package display;
+package header.display;
 
 import defaultPackage.Drawable;
 import defaultPackage.Game;
@@ -7,13 +7,13 @@ import defaultPackage.Game;
 import java.awt.Image;
 
 /**
- *  JPanel with controllable image of 7-segment display.
+ *  JPanel with controllable image of 7-segment header.display.
  *  @author Kovalenko Lev
  *  Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
 class SevenSegmentDisplay extends Drawable {
 
-	private static final String Image_FOLDER_NAME = "display";
+	private static final String IMAGE_FOLDER_NAME = "display";
 
 	private static final Image[] image = new Image[10];
 	private static Image imageMinus;
@@ -28,10 +28,10 @@ class SevenSegmentDisplay extends Drawable {
 	/** Gets images of digits and "minus" from current image pack of the game. */
 	public static void loadImages() {
 
-		imageMinus = Game.getPackNow().getImage(Image_FOLDER_NAME, "-");
+		imageMinus = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "-");
 
 		for (int i = 0; i <= 9; i++) {
-			image[i] = Game.getPackNow().getImage(Image_FOLDER_NAME, Integer.toString(i));
+			image[i] = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, Integer.toString(i));
 		}
 	}
 

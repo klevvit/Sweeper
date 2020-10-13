@@ -4,6 +4,8 @@
  */
 package defaultPackage;
 
+import header.Smile;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 

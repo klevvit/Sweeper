@@ -1,4 +1,4 @@
-package display;
+package header.display;
 
 import javax.swing.*;
 import java.util.Date;

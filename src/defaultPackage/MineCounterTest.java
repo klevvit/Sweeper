@@ -4,7 +4,7 @@
  */
 package defaultPackage;
 
-import display.MineCounter;
+import header.display.MineCounter;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

@@ -4,9 +4,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.tools.Tool;
 
 import borderFragments.BorderFragment;
+import header.Header;
 
 /**
  * @author Kovalenko Lev
@@ -74,11 +74,7 @@ public class Game {
 		frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
 		frame.revalidate();
 
-		Dimension frameSize = new Dimension(
-				cellCountX * Cell.getCellSize() + 2 * BorderFragment.getSizeSmall() + FRAME_CORRECTION_X,
-				(cellCountY + header.getHeight()) * Cell.getCellSize() + 3 * BorderFragment.getSizeSmall()
-						+ FRAME_CORRECTION_Y);
-		frame.setSize(frameSize);
+		frame.setSize(calcFrameSize());
 
 		setGameOn(true);
 
@@ -149,11 +145,14 @@ public class Game {
 		frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
 		frame.revalidate();
 
-		Dimension frameSize = new Dimension(
+		frame.setSize(calcFrameSize());
+	}
+
+	private static Dimension calcFrameSize() {
+		return new Dimension(
 				cellCountX * Cell.getCellSize() + 2 * BorderFragment.getSizeSmall() + FRAME_CORRECTION_X,
-				(cellCountY + header.getHeight()) * Cell.getCellSize() + 3 * BorderFragment.getSizeSmall()
+				(cellCountY + Header.HEIGHT_IN_CELLS) * Cell.getCellSize() + 3 * BorderFragment.getSizeSmall()
 						+ FRAME_CORRECTION_Y);
-		frame.setSize(frameSize);
 	}
 
 	public static void resetImages() {

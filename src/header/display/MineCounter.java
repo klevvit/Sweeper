@@ -1,4 +1,4 @@
-package display;
+package header.display;
 
 /**
  * @author Kovalenko Lev

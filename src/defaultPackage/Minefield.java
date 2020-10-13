@@ -1,6 +1,6 @@
 package defaultPackage;
 
-import display.MineCounter;
+import header.display.MineCounter;
 
 import java.util.ArrayList;
 

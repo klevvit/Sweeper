@@ -15,6 +15,7 @@ import borderFragments.NorthWest;
 import borderFragments.SouthEast;
 import borderFragments.SouthWest;
 import borderFragments.Vertical;
+import header.Header;
 
 public class Border {
 
@@ -34,8 +35,9 @@ public class Border {
 		minefieldWidth = field.getWidth();
 		minefieldHeight = field.getHeight();
 		Header header = Game.getHeader();
-		headerPanel = header.getPanel();
-		headerHeight = header.getHeight();
+//		headerPanel = header.getPanel();  todo just commented and wrote the next line
+		headerPanel = header;
+		headerHeight = Header.HEIGHT_IN_CELLS;
 		borderHor = new BorderFragment[minefieldWidth][3];
 		borderVert = new BorderFragment[2][minefieldHeight + headerHeight + 3];
 		create();
