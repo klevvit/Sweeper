@@ -11,21 +11,18 @@ import java.awt.*;
  */
 public class Counter extends WindowElement {
 
-	/** a number to header.display */
+	/** a number to display */
 	private int value;
 
 	private final SevenSegmentDisplay[] display = new SevenSegmentDisplay[3];
 
 	protected Counter(int value) {
-
 		super(3 * SevenSegmentDisplay.SIZE_X, SevenSegmentDisplay.SIZE_Y);
+
+		setLayout(new GridLayout(1, 3));
 
 		for (int i = 0; i < display.length; i++) {
 			display[i] = new SevenSegmentDisplay();
-		}
-
-		for (int i = 0; i < display.length; i++) {
-			display[i].setLocation(i * display[i].getWidth(), 0);
 			add(display[i]);
 		}
 
@@ -52,9 +49,9 @@ public class Counter extends WindowElement {
 	}
 
 	/**
-	 * Returns the maximal/minimal number header.display can show if val is out of bounds
+	 * Returns the maximal/minimal number display can show if val is out of bounds
 	 * @param val value required to be adopted
-	 * @return <code>val</code> if it can be shown on header.display; -99 if it's less than -99; 999 if it's more than 999.
+	 * @return <code>val</code> if it can be shown on display; -99 if it's less than -99; 999 if it's more than 999.
 	 */
 	private int getValueToShow(int val) {
 		return Math.max(-99, Math.min(val, 999));
@@ -76,7 +73,7 @@ public class Counter extends WindowElement {
 	}
 
 	/**
-	 * Override default scaled size calculation to adopt to size of 7-segment header.display.
+	 * Override default scaled size calculation to adopt to size of 7-segment display.
 	 * @param defaultSizeX element width for scale = 1
 	 * @param defaultSizeY element height for scale = 1
 	 * @return Dimension object with sizes for current scale.

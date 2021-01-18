@@ -24,8 +24,6 @@ public abstract class WindowElement extends JPanel {
         this.SIZE_Y = SIZE_Y;
 
         setSize(getScaledSize());
-
-        setLayout(null);
     }
 
     /** Returns scaled size in pixels */
@@ -41,11 +39,19 @@ public abstract class WindowElement extends JPanel {
         return getScaledSize(SIZE_X, SIZE_Y);
     }
 
-    /** Updates element size if scale was changed. */
-    @Override
-    public void paintComponent(Graphics g) {
-        setSize(getScaledSize());
+    /** Sets location for elements which this element contain. Empty by default. */
+//    protected void locateElements() {} todo remove
 
-        super.paintComponent(g);
-    }
+    /** Updates element size if scale was changed. todo remove method  */
+//    @Override
+//    public void paintComponent(Graphics g) {
+//        Dimension newSize = getScaledSize();
+//
+//        if (!getSize().equals(newSize)) {
+//            locateElements();
+//            setSize(newSize);
+//        }
+//
+//        super.paintComponent(g);
+//    }
 }

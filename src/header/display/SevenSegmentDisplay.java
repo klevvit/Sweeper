@@ -7,7 +7,7 @@ import defaultPackage.Game;
 import java.awt.Image;
 
 /**
- *  JPanel with controllable image of 7-segment header.display.
+ *  JPanel with controllable image of 7-segment display.
  *  @author Kovalenko Lev
  *  Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */

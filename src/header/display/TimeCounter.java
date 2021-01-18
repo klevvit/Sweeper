@@ -33,7 +33,7 @@ public class TimeCounter extends Counter {
 
 				// if lag > 1 second, tillNextSecond is negative
 				long secondsShift = tillNextSecond > 0 ? 0 : -tillNextSecond / 1000 + 1;
-				long sleepTime = secondsShift > 0 ? tillNextSecond :  // equals tillNextSecond if it's > 0
+				long sleepTime = tillNextSecond > 0 ? tillNextSecond :  // equals tillNextSecond if it's > 0
 						(tillNextSecond + 1000 * secondsShift);  // same as adding thousands until result is > 0
 
 				if (secondsShift > 0) {

@@ -21,7 +21,7 @@ public abstract class Drawable extends WindowElement {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Dimension size = getScaledSize();
+        Dimension size = getScaledSize();  // todo may have troubles here
         g.drawImage(imageNow, 0, 0, size.width, size.height, this);
     }
 }
