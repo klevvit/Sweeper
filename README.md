@@ -87,7 +87,7 @@ And there's cheats menu:
 - **Open cells** opens all the cells which are obviously safe to open according to the flags.
 - **Solve it!** tries its best to pass the game as far as possible.
 
-Unfortunately, all these functions became glitchy for now due to my attempts to improve the game.
+Unfortunately, these functions became glitchy for now due to my attempts to improve the game.
 
 ## Download
 You can download [runnable jar-file](out/artifacts/Sweeper_jar). Current version works on my Mac, but I'm not sure about Windows. 
