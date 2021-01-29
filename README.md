@@ -26,17 +26,26 @@ According to [Wikipedia article](https://en.wikipedia.org/wiki/Minesweeper_(vide
 
 > The first click in any game will never be a mine.
 
-> To win the game, players must uncover all non-mine cells, at which point, the timer is stopped. Flagging
-> all the mined cells is not required.
+> To win the game, players must uncover all non-mine cells, at which point, the timer is stopped. Flagging all
+> the mined cells is not required.
 
 ## Screenshots
-New game text
+
+The game window has four elements: minefield, two timers and a smile.
+
+- **Minefield** consists of cells, some of which contain *(guess what?)* mines.
+- **Timer on the left** is a mine counter. It shows how many mines are located on the field minus quantity of
+cells you marked as flags. In other words, you can see how many mined cells are left to be revealed.
+- **Timer on the right** is a time counter that measures your solving speed. It starts when the game starts and
+stops when the game stops.
+- **Smile button** can be pressed any time to reset field and start a new game with the same parameters.
 
 <img src="screenshots/01_start.png" alt="start" width="40%" />
 
-Open first cell and the game starts text
+Use left-click on a cell to open it. To start the game, open any cell.
 
-<img src="screenshots/02_left_click.png" alt="left click" width="40%" /> <img src="screenshots/03_started.png" alt="started" width="40%" />
+<img src="screenshots/02_left_click.png" alt="left click" width="40%" /> <img src="screenshots/03_started.png"
+    alt="started" width="40%" />
 
 A flag appears after right-clicking on a cell:
 
@@ -44,7 +53,8 @@ A flag appears after right-clicking on a cell:
 
 Both mouse keys text
 
-<img src="screenshots/05_left_right_click.png" alt="left right click" width="40%" /> <img src="screenshots/06_left_right_click_2.png" alt="left right click 2" width="40%" />
+<img src="screenshots/05_left_right_click.png" alt="left right click" width="40%" /> <img
+    src="screenshots/06_left_right_click_2.png" alt="left right click 2" width="40%" />
 
 Uncover all cells without mines to win.
 
@@ -73,7 +83,8 @@ You can change scale of the game:
 The default scale is 200%.
 The game has different textures for 150% scale:
 
-<img src="screenshots/13_scale_150.png" alt="scale 150" width="40%" /> <img src="screenshots/14_scale_150_2.png" alt="scale 150 2" width="40%" />
+<img src="screenshots/13_scale_150.png" alt="scale 150" width="40%" /> <img src="screenshots/14_scale_150_2.png"
+    alt="scale 150 2" width="40%" />
 
 And also you can change your image pack:
 
