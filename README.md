@@ -29,6 +29,66 @@ According to [Wikipedia article](https://en.wikipedia.org/wiki/Minesweeper_(vide
 > To win the game, players must uncover all non-mine cells, at which point, the timer is stopped. Flagging
 > all the mined cells is not required.
 
+## Screenshots
+New game text
+
+<img src="screenshots/01_start.png" alt="start" width="40%" />
+
+Open cells text
+
+<img src="screenshots/02_game_in_process.png" alt="game in process" width="40%" /> <img src="screenshots/03_left_click.png" alt="left click" width="40%" />
+
+Left+right click text
+
+<img src="screenshots/04_left_right_click.png" alt="left right click" width="40%" />
+
+Win text
+
+<img src="screenshots/05_win.png" alt="win" width="40%" />
+
+Lose text
+
+<img src="screenshots/06_lose.png" alt="lose" width="40%" />
+
+New game menu text
+
+<img src="screenshots/07_new_game_menu.png" alt="new game menu" width="40%" />
+
+Amateur level has 16x16 field with 40 mines:
+
+<img src="screenshots/08_amateur.png" alt="amateur" width="40%" />
+
+Expert level has ...:
+
+<img src="screenshots/09_expert.png" alt="expert" width="40%" />
+
+You can change scale of the game:
+
+<img src="screenshots/10_scale_menu.png" alt="scale menu" width="40%" />
+
+The default scale is 200%.
+The game has different textures for 150% scale:
+
+<img src="screenshots/11_scale_150.png" alt="scale 150" width="40%" /> <img src="screenshots/12_scale_150_2.png" alt="scale 150 2" width="40%" />
+
+And also you can change your image pack:
+
+<img src="screenshots/13_image_pack_menu.png" alt="image pack menu" width="40%" />
+
+My friend made these textures special for me:
+
+<img src="screenshots/14_second_image_pack.png" alt="second image pack" width="40%" />
+
+And there's cheats menu:
+
+<img src="screenshots/15_cheats_menu.png" alt="cheats menu" width="40%" />
+
+- **Reset flags** option removes all current marks and sets obvious flags.
+- **Open cells** opens all the cells which are obviously safe to open according to the flags.
+- **Solve it!** tries its best to pass the game as far as possible.
+
+Unfortunately, these functions became glitchy for now due to my attempts to improve the game.
+
 ## Download
 You can download [runnable jar-file](out/artifacts/Sweeper_jar). Current version works on my Mac, but I'm not sure about Windows. 
 
