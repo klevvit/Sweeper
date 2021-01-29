@@ -33,7 +33,7 @@ According to [Wikipedia article](https://en.wikipedia.org/wiki/Minesweeper_(vide
 
 The game window has four elements: minefield, two timers and a smile.
 
-- **Minefield** consists of cells, some of which contain *(guess what?)* mines.
+- **Minefield** consists of cells, some of which contain mines.
 - **Timer on the left** is a mine counter. It shows how many mines are located on the field minus quantity of
 cells you marked as flags. In other words, you can see how many mined cells are left to be revealed.
 - **Timer on the right** is a time counter that measures your solving speed. It starts when the game starts and
