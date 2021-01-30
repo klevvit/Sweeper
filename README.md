@@ -104,15 +104,16 @@ The game has different textures for 150% scale:
 
 And from `Options` you can also change your image pack:
 
-<img src="screenshots/15_image_pack_menu.png" alt="image pack menu" width="40%" />
+<img src="screenshots/15_image_pack_menu.png" alt="image pack menu" width="68%" />
 
 I asked my friend to draw textures for me. He made this *"Battleship"* pack:
 
-<img src="screenshots/16_second_image_pack.png" alt="second image pack" width="40%" />
+<img src="screenshots/16_second_image_pack_1.png" alt="second image pack 1" width="40%" /> <img
+    src="screenshots/17_second_image_pack_2.png" alt="second image pack 2" width="40%" />
 
 And of course there's `Cheats` menu:
 
-<img src="screenshots/17_cheats_menu.png" alt="cheats menu" width="40%" />
+<img src="screenshots/18_cheats_menu.png" alt="cheats menu" width="40%" />
 
 - `Reset flags` removes all current marks, then detects and sets obvious flags.
 - `Open cells` opens all the cells which are obviously safe to open according to the flags.
