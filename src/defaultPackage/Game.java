@@ -31,8 +31,8 @@ public class Game {
 	private static float scale = 2f;
 	private static final ImagePack[] PACK = ImagePack.getDefaultPackSet();
 	private static ImagePack packNow = PACK[0];
-	public static final int FRAME_CORRECTION_X = +6;
-	public static final int FRAME_CORRECTION_Y = +52;
+	public static final int FRAME_CORRECTION_X = +0;
+	public static final int FRAME_CORRECTION_Y = +50;
 
 	static boolean justLaunched = true;
 
