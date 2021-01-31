@@ -92,7 +92,7 @@ The game has 3 difficulty levels. Switching between them is available from `New 
 
 `Options` item in the menu allows you to change scale:
 
-<img src="screenshots/12_scale_menu.png" alt="scale menu" width="40%" />
+![scale menu](screenshots/12_scale_menu.png)
 
 The default scale is 200%.
 
@@ -107,12 +107,12 @@ From `Options` you can also change your image pack:
 
 I asked my friend to draw textures for me. He made this *"Battleship"* pack:
 
-<img src="screenshots/16_second_image_pack_1.png" alt="second image pack 1" width="40%" /> <img
-    src="screenshots/17_second_image_pack_2.png" alt="second image pack 2" width="40%" />
+![second image pack 1](screenshots/16_second_image_pack_1.png)
+![second image pack 2](screenshots/17_second_image_pack_2.png)
 
 And of course there's `Cheats` menu:
 
-<img src="screenshots/18_cheats_menu.png" alt="cheats menu" width="40%" />
+![cheats menu](screenshots/18_cheats_menu.png)
 
 - `Reset flags` removes all current marks, then detects and sets obvious flags.
 - `Open cells` opens all the cells which are obviously safe to open according to the flags.
