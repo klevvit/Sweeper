@@ -29,10 +29,9 @@ The first click in any game will never be a mine.
 To win the game, players must uncover all non-mine cells, at which point, the timer is stopped. Flagging all the mined
 cells is not required.
 
+# Tutorial
 
-
-## Tutorial
-
+## Window contents
 The game window has four elements: minefield, two counters and a smile.
 
 - **Minefield** consists of cells, some of which contain mines.
@@ -43,6 +42,8 @@ when the game ends.
 - **Smile button** can be pressed any time to reset field and start a new game with the same parameters.
 
 ![start](screenshots/01_start.png)
+
+## Controls
 
 Use left-click on a cell to open it. To start the game, open any cell.
 
@@ -60,6 +61,8 @@ A flag ![flagged cell](src/images/default/1.0x/cells/Flag.png) appears after rig
 
 Notice that mine counter (on the left) has decreased by one.
 
+## Both mouse keys click
+
 If you marked all adjacent mines for the cell, you can *click this cell with both left and right mouse keys*.
 This will open *all the other adjacent cells*.
 
@@ -71,6 +74,8 @@ the flag:
 
 ![left right click](screenshots/05_left_right_click.png)
 ![left right click 2](screenshots/06_left_right_click_2.png)
+
+## End of game
 
 You uncover all the cells without mines - you win:
 
@@ -99,6 +104,8 @@ The game has 3 difficulty levels. Switching between them is available from `New 
 
 ![expert](screenshots/11_expert.png)
 
+## Scale
+
 `Options` item in the menu allows you to change scale:
 
 ![scale menu](screenshots/12_scale_menu.png)
@@ -110,6 +117,8 @@ The game has different textures for 150% scale:
 ![scale 150](screenshots/13_scale_150.png)
 ![scale 150 2](screenshots/14_scale_150_2.png)
 
+## Image packs
+
 From `Options` you can also change your image pack:
 
 ![image pack menu](screenshots/15_image_pack_menu.png)
@@ -118,6 +127,8 @@ I asked [my friend Andrés](https://gitlab.com/AndiDu) to draw textures for me. 
 
 ![second image pack 1](screenshots/16_second_image_pack_1.png)
 ![second image pack 2](screenshots/17_second_image_pack_2.png)
+
+## Cheats
 
 And of course there's `Cheats` menu:
 
