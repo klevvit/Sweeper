@@ -39,12 +39,12 @@ you marked as flags. In other words, you can see how many mined cells are left t
 when the game ends.
 - **Smile button** can be pressed any time to reset field and start a new game with the same parameters.
 
-<img src="screenshots/01_start.png" alt="start" width="40%" />
+![start](screenshots/01_start.png)
 
 Use left-click on a cell to open it. To start the game, open any cell.
 
-<img src="screenshots/02_left_click.png" alt="left click" width="40%" /> <img src="screenshots/03_started.png"
-    alt="started" width="40%" />
+![left click](screenshots/02_left_click.png)
+![started](screenshots/03_started.png)
 
 Empty cells (without a digit) are cells that have no adjacent mines. When an empty cell is opened, it opens all the
 surrounding cells automatically.
@@ -53,7 +53,7 @@ Notice that stopwatch (counter on the right) has started.
 
 A flag appears after right-clicking on a cell:
 
-<img src="screenshots/04_flag.png" alt="flag" width="40%" />
+![flag](screenshots/04_flag.png)
 
 Notice that mine counter (on the left) has decreased by one.
 
@@ -65,30 +65,32 @@ flagged cells around it*; so don't be afraid of misclicking or flagging incorrec
 
 On images below, this click is being made on "1" cell that is right under the flag:
 
-<img src="screenshots/05_left_right_click.png" alt="left right click" width="40%" /> <img
-    src="screenshots/06_left_right_click_2.png" alt="left right click 2" width="40%" />
+![left right click](screenshots/05_left_right_click.png)
+![left right click 2](screenshots/06_left_right_click_2.png)
 
 You uncover all the cells without mines - you win:
 
-<img src="screenshots/07_win.png" alt="win" width="40%" />
+![win](screenshots/07_win.png)
 
 You open a cell with mine - you lose:
 
-<img src="screenshots/08_lose.png" alt="lose" width="40%" />
+![lose](screenshots/08_lose.png)
+
+Crossed out mines represent cells that contained no mine but were flagged.
 
 The game has 3 difficulty levels. Switching between them is available from `New game` menu.
 
-<img src="screenshots/09_new_game_menu.png" alt="new game menu" width="40%" />
+![new game menu](screenshots/09_new_game_menu.png)
 
 `Beginner` level is default and has 10x10 field with 10 mines; density is one mine per 10 cells.
 
 `Amateur` level has 16x16 field with 40 mines; density is one mine per 6.4 cells:
 
-<img src="screenshots/10_amateur.png" alt="amateur" width="64%" />
+![amateur](screenshots/10_amateur.png)
 
 `Expert` level has 30x16 field with 99 mines; density is one mine per 4.85 cells:
 
-<img src="screenshots/11_expert.png" alt="expert" width="100%" />
+![expert](screenshots/11_expert.png)
 
 `Options` item in the menu allows you to change scale:
 
@@ -98,12 +100,12 @@ The default scale is 200%.
 
 The game has different textures for 150% scale:
 
-<img src="screenshots/13_scale_150.png" alt="scale 150" width="30%" /> <img src="screenshots/14_scale_150_2.png"
-    alt="scale 150 2" width="30%" />
+![scale 150](screenshots/13_scale_150.png)
+![scale 150 2](screenshots/14_scale_150_2.png)
 
 From `Options` you can also change your image pack:
 
-<img src="screenshots/15_image_pack_menu.png" alt="image pack menu" width="68%" />
+![image pack menu](screenshots/15_image_pack_menu.png)
 
 I asked my friend to draw textures for me. He made this *"Battleship"* pack:
 
