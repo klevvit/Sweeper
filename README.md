@@ -114,7 +114,7 @@ From `Options` you can also change your image pack:
 
 ![image pack menu](screenshots/15_image_pack_menu.png)
 
-I asked my friend to draw textures for me. He made this *"Battleship"* pack:
+I asked [my friend Andrés](https://gitlab.com/AndiDu) to draw textures for me. He made this *"Battleship"* pack:
 
 ![second image pack 1](screenshots/16_second_image_pack_1.png)
 ![second image pack 2](screenshots/17_second_image_pack_2.png)
