@@ -49,12 +49,12 @@ Use left-click on a cell to open it. To start the game, open any cell.
 ![left click](screenshots/02_left_click.png)
 ![started](screenshots/03_started.png)
 
-Empty cells (without a digit) are cells that have no adjacent mines. When an empty cell is opened, it opens all the
-surrounding cells automatically.
+Empty cells ![empty cell](src/images/default/1.0x/cells/0.png) (without a digit) are cells that have no adjacent mines.
+When an empty cell is opened, it opens all the surrounding cells automatically.
 
 Notice that stopwatch (counter on the right) has started.
 
-A flag appears after right-clicking on a cell:
+A flag ![flagged cell](src/images/default/1.0x/cells/Flag.png) appears after right-clicking on a cell:
 
 ![flag](screenshots/04_flag.png)
 
@@ -66,7 +66,8 @@ This will open *all the other adjacent cells*.
 This function helps to improve your speed a lot! And it works *only if number in the cell is equal to quantity of
 flagged cells around it*; so don't be afraid of misclicking or flagging incorrect number of cells.
 
-On images below, this click is being made on "1" cell that is right under the flag:
+On images below, this click is being made on !["1" cell](src/images/default/1.0x/cells/1.png) cell that is right under
+the flag:
 
 ![left right click](screenshots/05_left_right_click.png)
 ![left right click 2](screenshots/06_left_right_click_2.png)
@@ -79,7 +80,10 @@ You open a cell with mine - you lose:
 
 ![lose](screenshots/08_lose.png)
 
-Crossed out mines represent cells that contained no mine but were flagged.
+![crossed out mine](src/images/default/1.0x/cells/MineWrong.png) represent cells that contained no mine but were
+flagged.
+
+## Levels
 
 The game has 3 difficulty levels. Switching between them is available from `New game` menu.
 
