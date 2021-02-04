@@ -103,7 +103,7 @@ public class Minefield {
 				Cell.setSafeMode(true);
 //				Thread timerThread = new Thread(Game.getHeader().getTimer(), "TimerThread");
 //				timerThread.start();  todo just changed to the next line
-				Game.getHeader().getTimer().start();
+				Game.getHeader().getStopwatch().start();
 				isMined = true;
 			} catch (NoPermissionException nex) {
 				nex.printStackTrace();

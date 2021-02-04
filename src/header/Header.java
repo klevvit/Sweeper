@@ -2,7 +2,7 @@ package header;
 
 import defaultPackage.*;
 import header.display.MineCounter;
-import header.display.TimeCounter;
+import header.display.Stopwatch;
 
 import java.awt.Color;
 
@@ -22,7 +22,7 @@ public class Header extends WindowElement {
 
 	private final Smile smile;
 	private final MineCounter mineCounter;
-	private final TimeCounter timer;
+	private final Stopwatch stopwatch;
 
 	public Header(int widthInCells) {
 		super(widthInCells * Cell.DEFAULT_SIZE_IN_PIXELS, HEIGHT_IN_CELLS * Cell.DEFAULT_SIZE_IN_PIXELS);
@@ -33,7 +33,7 @@ public class Header extends WindowElement {
 
 		smile = new Smile(Game.getScale());  // todo change when better Smile implementation
 		mineCounter = new MineCounter();
-		timer = new TimeCounter();
+		stopwatch = new Stopwatch();
 
 		locateElements();
 
@@ -41,7 +41,7 @@ public class Header extends WindowElement {
 
 		add(smile);
 		add(mineCounter);
-		add(timer);
+		add(stopwatch);
 	}
 
 	public void resetScale() {  // todo fix and possibly get rid of
@@ -57,7 +57,7 @@ public class Header extends WindowElement {
 		int sideShift = (int) (DEFAULT_SHIFT_FROM_SIDE_IN_PIXELS * Game.getScale());
 
 		mineCounter.setLocation(sideShift, (getHeight() - mineCounter.getHeight()) / 2);
-		timer.setLocation(getWidth() - sideShift - timer.getWidth(), (getHeight() - timer.getHeight()) / 2);
+		stopwatch.setLocation(getWidth() - sideShift - stopwatch.getWidth(), (getHeight() - stopwatch.getHeight()) / 2);
 	}
 
 	public void resetImages() {
@@ -76,7 +76,7 @@ public class Header extends WindowElement {
 		return mineCounter;
 	}
 
-	public TimeCounter getTimer() {
-		return timer;
+	public Stopwatch getStopwatch() {
+		return stopwatch;
 	}
 }
