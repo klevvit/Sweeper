@@ -141,5 +141,5 @@ And of course there's `Cheats` menu:
 Unfortunately, these functions became glitchy for now due to my work on improving the code.
 
 ## Download
-You can download [runnable jar-file](out/artifacts/Sweeper_jar). Current version works with Java 10 on my Mac, but I'm
-not sure about Windows. 
+You can download [runnable jar-file](out/artifacts/Sweeper_jar). Current version works with Java 8 or higher and checked
+on macOS Big Sur and Windows 10.

@@ -55,9 +55,9 @@ public class Game {
 	private void setIcon() {
 		ArrayList<Image> iconList = packNow.getIconList(new String[]{"icon16.png", "icon24.png", "icon32.png"});
 
-		// for MacOs and other systems which support this method
-		Taskbar taskbar = Taskbar.getTaskbar();
-		taskbar.setIconImage(iconList.get(2));  // todo maybe add try-catch
+		// for MacOs and other systems that support this method
+//		Taskbar taskbar = Taskbar.getTaskbar();
+//		taskbar.setIconImage(iconList.get(2));  // todo try to implement when launching with java 9 or higher
 
 		// for Windows and other systems which support this method
 		frame.setIconImages(iconList);
