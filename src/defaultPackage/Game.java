@@ -31,8 +31,9 @@ public class Game {
 	private static float scale = 2f;
 	private static final ImagePack[] PACK = ImagePack.getDefaultPackSet();
 	private static ImagePack packNow = PACK[0];
-	public static final int FRAME_CORRECTION_X = +0;
-	public static final int FRAME_CORRECTION_Y = +50;
+
+	public static final int[] FRAME_CORRECTION_BIG_SUR = {+0, +50};
+	public static final int[] FRAME_CORRECTION_WIN_10 = {+18, +70};
 
 	static boolean justLaunched = true;
 
@@ -149,10 +150,19 @@ public class Game {
 	}
 
 	private static Dimension calcFrameSize() {
+
+		int[] frame_correction;
+
+		if (System.getProperty("os.name").equals("Mac OS X")) {
+			frame_correction = FRAME_CORRECTION_BIG_SUR;
+		} else {
+			frame_correction = FRAME_CORRECTION_WIN_10;
+		}
+
 		return new Dimension(
-				cellCountX * Cell.getCellSize() + 2 * BorderFragment.getSizeSmall() + FRAME_CORRECTION_X,
+				cellCountX * Cell.getCellSize() + 2 * BorderFragment.getSizeSmall() + frame_correction[0],
 				(cellCountY + Header.HEIGHT_IN_CELLS) * Cell.getCellSize() + 3 * BorderFragment.getSizeSmall()
-						+ FRAME_CORRECTION_Y);
+						+ frame_correction[1]);
 	}
 
 	public static void resetImages() {
