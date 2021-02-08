@@ -171,7 +171,7 @@ public class ImagePack {
     public static ImagePack[] getDefaultPackSet() {
         ImagePack[] packArray = new ImagePack[2];
         packArray[0] = new ImagePack("Default", "", "default");
-        packArray[1] = new ImagePack("Battleship", "Andrés Dugin", "battleship", false);
+        packArray[1] = new ImagePack("Battleship", "Andrés Dugin", "battleship", false); // todo make AndiDuOrange
         return packArray;
     }
 

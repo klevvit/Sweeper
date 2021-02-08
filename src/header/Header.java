@@ -63,7 +63,7 @@ public class Header extends WindowElement {
 	public void resetImages() {
 		smile.resetImages();
 		mineCounter.loadImages();
-
+//		timer.loadImages();
 	}
 
 	// setters and getters
