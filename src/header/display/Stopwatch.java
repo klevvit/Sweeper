@@ -4,16 +4,17 @@ import javax.swing.*;
 import java.util.Date;
 
 /**
- * Class that displays timer and can start-stop it.
- * Important: <code>stop()</code> this timer before losing link to this object!
+ * Class that displays stopwatch that can show time from its start or frozen at some moment value. <br>
+ * Important: <code>stop()</code> this stopwatch before losing link to this object!
  * Or just use the same timer object instead.
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
- * todo timer doesn't stop after pressing smile or starting a new game while current game is on; another timer starts simultaneously.
  */
 public class TimeCounter extends Counter {
 	private long beginTime;
 	private final Timer timer;
+
+	private boolean justResumed = false;
 
 	private static final int TICKS_CORRECTION_INTERVAL = 10;
 
@@ -26,10 +27,12 @@ public class TimeCounter extends Counter {
 			// error. For me it's about 1-second difference every 500 seconds.
 			// So every TICKS_CORRECTION_INTERVAL ticks we compare time with the computer clock and set the next
 			// second manually to compensate the error.
-			if (getValue() % TICKS_CORRECTION_INTERVAL == 0) {
+			if (getValue() % TICKS_CORRECTION_INTERVAL == 0 || justResumed) {
+
+				justResumed = false;
 
 				long timeFromStart = new Date().getTime() - beginTime;
-				long tillNextSecond = 1000 * getValue() - timeFromStart;
+				long tillNextSecond = 1000L * getValue() - timeFromStart;
 
 				// if lag > 1 second, tillNextSecond is negative
 				long secondsShift = tillNextSecond > 0 ? 0 : -tillNextSecond / 1000 + 1;
