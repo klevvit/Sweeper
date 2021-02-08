@@ -125,7 +125,7 @@ public class Game {
 		Cell.setSafeMode(false);
 		setGameOn(false);
 		header.getStopwatch().stop();
-		header.getSmile().swag();
+		header.getSmile().chill();
 		minefield.setFlags();
 
 	}

@@ -119,7 +119,7 @@ public class Smile extends JPanel {
 		}
 	}
 
-	public void swag() {
+	public void chill() {
 		if (!isDead && !isVictory) {
 			isVictory = true;
 			isScared = false;
