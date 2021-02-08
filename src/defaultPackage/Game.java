@@ -29,6 +29,8 @@ public class Game {
 
 
 	private static float scale = 2f;
+	private static final float EPS_F = 0.0001f;
+
 	private static final ImagePack[] PACK = ImagePack.getDefaultPackSet();
 	private static ImagePack packNow = PACK[0];
 
@@ -135,8 +137,25 @@ public class Game {
 	}
 
 	public static void setScale(float sc) {
+
+		if (Math.abs(sc - scale) < EPS_F) {
+			return;
+		}
+
 		scale = sc;
-		resetImages();
+
+		// we need to change textures (because they may change for specific scale), also we need to change all sizes.
+		// but in what order?
+
+		// todo maybe try dimensions first, and then update just as texture pack?
+
+		// reset images todo try to separate scale update from image update
+		header.resetImages();
+
+		minefield.resetImages();
+		border.resetImages();
+		repaint();
+
 		frame.remove(mainPanel);
 		header.resetScale();
 		minefield.resetScale();
@@ -163,13 +182,6 @@ public class Game {
 				cellCountX * Cell.getCellSize() + 2 * BorderFragment.getSizeSmall() + frame_correction[0],
 				(cellCountY + Header.HEIGHT_IN_CELLS) * Cell.getCellSize() + 3 * BorderFragment.getSizeSmall()
 						+ frame_correction[1]);
-	}
-
-	public static void resetImages() {
-		header.resetImages();
-		minefield.resetImages();
-		border.resetImages();
-		repaint();
 	}
 
 	// setters and getters
@@ -208,7 +220,12 @@ public class Game {
 
 	public static void setPackNow(int packNum) {
 		packNow = PACK[packNum];
-		resetImages();
+
+		// reset images todo try to separate scale update from image update
+		header.resetImages();
+		minefield.resetImages();
+		border.resetImages();
+		repaint();
 	}
 
 }
