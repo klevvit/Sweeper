@@ -1,0 +1,10 @@
+- Make static class (pull out from Game) with links to current game objects such as ImagePack, scale, etc.
+
+- Stopped in Drawable. Image updates. We need to:
+1. load all static images
+2. update imageNow for all Drawables  // have unordered set of all drawables inside drawable?
+3. repaint everything  // just call frame.repaint()?
+For scale change we need to:
+1/2. load all static images
+2/1. update dimensions for all WindowElements
+3. repaint everything  // just call frame.repaint()?
