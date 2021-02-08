@@ -114,7 +114,7 @@ public class Game {
 			return;
 		setGameOn(false);
 		Cell.setSafeMode(false);
-		header.getStopwatch().stop();
+		header.getStopwatch().freeze();
 		header.getSmile().kill();
 		minefield.showMines();
 	}
@@ -124,7 +124,7 @@ public class Game {
 			return;
 		Cell.setSafeMode(false);
 		setGameOn(false);
-		header.getStopwatch().stop();
+		header.getStopwatch().freeze();
 		header.getSmile().chill();
 		minefield.setFlags();
 

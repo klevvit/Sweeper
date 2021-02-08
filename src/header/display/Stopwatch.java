@@ -10,7 +10,8 @@ import java.util.Date;
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
-public class TimeCounter extends Counter {
+// todo stopwatch doesn't stop after pressing smile or starting a new game while current game is on; another timer starts simultaneously.
+public class Stopwatch extends Counter {
 	private long beginTime;
 	private final Timer timer;
 
@@ -18,7 +19,7 @@ public class TimeCounter extends Counter {
 
 	private static final int TICKS_CORRECTION_INTERVAL = 10;
 
-	public TimeCounter() {
+	public Stopwatch() {
 		timer = new Timer(1000, event ->
 		{
 			setValue(getValue() + 1);
@@ -43,7 +44,7 @@ public class TimeCounter extends Counter {
 					setValue(getValue() + (int) secondsShift);
 				}
 
-				stop();
+				freeze();
 
 				Runnable sleepAndWake = () -> {
 					try {
@@ -67,8 +68,7 @@ public class TimeCounter extends Counter {
 	}
 
 	/**
-	 * Launches timer. Shows "1" immediately and increments value every second.
-	 * Stops timer at first if it was launched before.
+	 * Launches stopwatch. Shows "1" immediately and increments value every second.
 	 */
 	public void start() {
 		setValue(1);
@@ -76,17 +76,21 @@ public class TimeCounter extends Counter {
 		timer.start();
 	}
 
-	/** Launches timer from its current value. */
+	/** Resumes display updates. Stopwatch shows time since <code>start()</code> call. */
 	public void resume() {
+		justResumed = true;
 		timer.start();
 	}
 
-	/** Stops timer if it was launched. Current value freezes. */
-	public void stop() {
+	/** Stops display updates if stopwatch was launched. */
+	public void freeze() {
 		timer.stop();
 	}
 
-	/** Stops timer if it was launched and displays zero. */
+	/** Stops display updates if stopwatch was launched. Shows zero. <br>
+	 *  Note: <code>resume()</code> call will show time since last <code>start()</code> call. To start timer from zero,
+	 *  use 
+	 */
 	public void reset() {
 		timer.stop();
 		setValue(0);
