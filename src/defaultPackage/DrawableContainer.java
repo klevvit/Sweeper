@@ -1,10 +1,10 @@
 package defaultPackage;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public interface DrawableContainer extends WindowElementContainer {
 
 	/** Returns HashSet of all Drawables it contains */
-	HashSet<Drawable> getDrawables();
+	ArrayList<Drawable> getDrawables();
 
 }
