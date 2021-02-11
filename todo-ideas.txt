@@ -4,8 +4,12 @@
 1. load all static images
 2. update imageNow for all Drawables  // have unordered set of all drawables inside drawable?
 3. repaint everything  // just call frame.repaint()?
-For scale change we need to:
-1. load all static images
-2. update imageNow for all Drawables
-3. update dimensions for all WindowElements  // or do this first
+
+- For scale change we need to:
+1. update dimensions for all WindowElements
+2. load all static images
+3. update imageNow for all Drawables
 4. repaint everything  // just call frame.repaint()?
+
+Somehow we need to go through all window elements and then through all drawables.
+Let's implement interface for returning WindowElements and Drawables element contains.
