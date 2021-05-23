@@ -45,7 +45,7 @@ when the game ends.
 
 ## Controls
 
-Use left-click on a cell to open it. To start the game, open any cell.
+Use left-click on a cell to open it. To start a game, open any cell.
 
 ![left click](screenshots/02_left_click.png)
 ![started](screenshots/03_started.png)
