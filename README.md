@@ -100,7 +100,7 @@ The game has 3 difficulty levels. Switching between them is available from `New 
 
 ![amateur](screenshots/10_amateur.png)
 
-`Expert` level has 30x16 field with 99 mines; density is one mine per 4.85 cells:
+`Expert` level has 30x16 field with 99 mines; density is one mine per about 4.85 cells:
 
 ![expert](screenshots/11_expert.png)
 
