@@ -77,11 +77,11 @@ the flag:
 
 ## End of game
 
-You uncover all the cells without mines - you win:
+You uncover all the cells without mines — you win:
 
 ![win](screenshots/07_win.png)
 
-You open a cell with mine - you lose:
+You open a cell with mine — you lose:
 
 ![lose](screenshots/08_lose.png)
 
