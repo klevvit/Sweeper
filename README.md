@@ -1,5 +1,5 @@
 # Sweeper
-My old "minesweeper" game.
+My old "minesweeper" game. Download is [here](https://github.com/klevvit/Sweeper#download)
 
 ## Disclaimer
 - This was my first serious IT project, so it contains tons of bad (and strange) coding.
