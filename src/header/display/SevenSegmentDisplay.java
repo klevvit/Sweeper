@@ -14,12 +14,10 @@ import java.awt.Image;
 class SevenSegmentDisplay extends Drawable {
 
 	private static final String IMAGE_FOLDER_NAME = "display";
-
 	private static final Image[] image = new Image[10];
-	private static Image imageMinus;
-
-	public static final int SIZE_X = 13;
-	public static final int SIZE_Y = 23;
+	protected static Image imageMinus;
+	protected static final int SIZE_X = 13;
+	protected static final int SIZE_Y = 23;
 
 	static {
 		loadImages();
@@ -55,8 +53,8 @@ class SevenSegmentDisplay extends Drawable {
 				newImage = image[d];
 			}
 
-			if (!newImage.equals(imageNow)) {
-				imageNow = newImage;
+			if (!newImage.equals(currentImage)) {
+				currentImage = newImage;
 				repaint();
 			}
 		}

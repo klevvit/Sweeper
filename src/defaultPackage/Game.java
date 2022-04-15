@@ -28,7 +28,7 @@ public class Game {
 	private static boolean isGameOn = false;
 
 
-	private static float scale = 2f;
+//	private static float scale = 2f;  todo get rid of
 	private static final float EPS_F = 0.0001f;
 
 	private static final ImagePack[] PACK = ImagePack.getDefaultPackSet();
@@ -47,6 +47,8 @@ public class Game {
 		frame.setTitle("Sweeper");
 		setIcon();
 
+
+
 		menu = new Menu();
 		frame.getContentPane().add(BorderLayout.NORTH, menu.getMenuBar());
 
@@ -62,7 +64,7 @@ public class Game {
 //		Taskbar taskbar = Taskbar.getTaskbar();
 //		taskbar.setIconImage(iconList.get(2));  // todo try to implement when launching with java 9 or higher
 
-		// for Windows and other systems which support this method
+		// for Windows and other systems that support this method
 		frame.setIconImages(iconList);
 	}
 
@@ -138,26 +140,27 @@ public class Game {
 
 	public static void setScale(float sc) {
 
-		if (Math.abs(sc - scale) < EPS_F) {
+		if (Math.abs(sc - WindowElement.getScale()) < EPS_F) {
 			return;
 		}
 
-		scale = sc;
+		WindowElement.setScale(sc);
 
 		// we need to change textures (because they may change for specific scale), also we need to change all sizes.
-		// but in what order?
 
-		// todo maybe try dimensions first, and then update just as texture pack?
+		// todo try dimensions first, and then update just as texture pack
 
 		// reset images todo try to separate scale update from image update
-		header.resetImages();
+
+
+
 
 		minefield.resetImages();
 		border.resetImages();
 		repaint();
 
 		frame.remove(mainPanel);
-		header.resetScale();
+		header.updateSize();
 		minefield.resetScale();
 		border = new Border();
 		mainPanel = border.getPanel();
@@ -165,7 +168,10 @@ public class Game {
 		frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
 		frame.revalidate();
 
+
 		frame.setSize(calcFrameSize());
+
+		frame.repaint();
 	}
 
 	private static Dimension calcFrameSize() {
@@ -186,8 +192,9 @@ public class Game {
 
 	// setters and getters
 
+	@Deprecated
 	public static float getScale() {
-		return scale;
+		return WindowElement.getScale();
 	}
 
 	public static Minefield getMinefield() {
@@ -222,7 +229,6 @@ public class Game {
 		packNow = PACK[packNum];
 
 		// reset images todo try to separate scale update from image update
-		header.resetImages();
 		minefield.resetImages();
 		border.resetImages();
 		repaint();

@@ -5,7 +5,6 @@
 package header;
 
 import defaultPackage.Game;
-import header.Smile;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -27,7 +26,7 @@ public class SmileListener implements MouseListener {
 		entered = false;
 		if (pressed) {
 			Smile s = (Smile) (ev.getSource());
-			s.unpress();
+			s.release();
 			s.repaint();
 		}
 	}
@@ -49,7 +48,7 @@ public class SmileListener implements MouseListener {
 			pressed = false;
 			if (entered) {
 				Smile s = (Smile) (ev.getSource());
-				s.unpress();
+				s.release();
 				Game.launchNewGame();
 			}
 		}

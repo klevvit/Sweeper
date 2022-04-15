@@ -1,28 +1,18 @@
-/**
- * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
- */
 package header;
 
+import defaultPackage.Drawable;
 import defaultPackage.Game;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.InvalidPropertiesFormatException;
-
-import javax.swing.JPanel;
 
 /**
  * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
+ * Copyright © Kovalenko Lev (Sweeper) 2016-2022. All rights reserved.
  */
-public class Smile extends JPanel {
+public class Smile extends Drawable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 816844242319281397L;
-	public static String imageFolder;
+	public static final String imageFolder = "smile";
 	private static Image imageSmile;
 	private static Image imagePressed;
 	private static Image imageScared;
@@ -30,52 +20,42 @@ public class Smile extends JPanel {
 	private static Image imageVictory;
 	private Image imageNow = imageSmile;
 
-	private int size;
-	private float scale;
-	public static final int DEFAULT_SIZE = 26;
+	public static final int SIZE = 26;
 	private boolean isPressed;
 	private boolean isScared;
 	private boolean isDead;
 	private boolean isVictory;
 
-	public Smile(float sc) {
-		scale = sc;
-		size = (int) (scale * DEFAULT_SIZE);
-		setSize(size, size);
-		resetImages();
+	static {
+		loadImages();
 	}
 
-	public void paintComponent(Graphics g) {
-		g.drawImage(imageNow, 0, 0, size, size, this);
+	public Smile() {
+		super(SIZE, SIZE, imageSmile);
 	}
 
-	public void setScale(float sc) {
-		scale = sc;
-		size = (int) (scale * DEFAULT_SIZE);
-		setSize(size, size);
-	}
-
-	public void resetImages() {
-		imageFolder = "smile";
+	/** Updates all Image variables. */
+	public static void loadImages() {
 		imageSmile = Game.getPackNow().getImage(imageFolder, "Smile");
 		imagePressed = Game.getPackNow().getImage(imageFolder, "Pressed");
 		imageScared = Game.getPackNow().getImage(imageFolder, "Scared");
 		imageDead = Game.getPackNow().getImage(imageFolder, "Dead");
 		imageVictory = Game.getPackNow().getImage(imageFolder, "Victory");
 
-		if (!isPressed) {
-			if (isVictory) {
-				imageNow = imageVictory;
-			} else if (isDead) {
-				imageNow = imageDead;
-			} else if (isScared) {
-				imageNow = imageScared;
-			} else {
-				imageNow = imageSmile;
-			}
-		} else {
-			imageNow = imagePressed;
-		}
+//		todo probably get rid of
+//		if (!isPressed) {
+//			if (isVictory) {
+//				imageNow = imageVictory;
+//			} else if (isDead) {
+//				imageNow = imageDead;
+//			} else if (isScared) {
+//				imageNow = imageScared;
+//			} else {
+//				imageNow = imageSmile;
+//			}
+//		} else {
+//			imageNow = imagePressed;
+//		}
 	}
 
 	public void press() {
@@ -87,7 +67,7 @@ public class Smile extends JPanel {
 		}
 	}
 
-	public void unpress() {
+	public void release() {
 
 		if (isPressed) {
 			isPressed = false;
@@ -129,9 +109,5 @@ public class Smile extends JPanel {
 			isScared = false;
 			imageNow = imageVictory;
 		}
-	}
-
-	public int getSmileSize() {
-		return size;
 	}
 }

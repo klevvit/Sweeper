@@ -10,13 +10,9 @@ import java.awt.Color;
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
-public class Header extends WindowElement {
+public class Header extends CompoundElement {
 
-//	private final JPanel myPanel = new JPanel(null); todo remove
-
-	/**
-	 * header height measured in minefield cells
-	 */
+	/** header height measured in minefield cells */
 	public static final int HEIGHT_IN_CELLS = 2;
 	public static final int DEFAULT_SHIFT_FROM_SIDE_IN_PIXELS = 6;
 
@@ -31,39 +27,20 @@ public class Header extends WindowElement {
 
 		setBackground(Color.LIGHT_GRAY);
 
-		smile = new Smile(Game.getScale());  // todo change when better Smile implementation
+		smile = new Smile();
 		mineCounter = new MineCounter();
 		stopwatch = new Stopwatch();
 
-		locateElements();
+		smile.setLocation((getWidth() - smile.getWidth()) / 2, (getHeight() - smile.getHeight()) / 2);
+		int sideShift = (int) (DEFAULT_SHIFT_FROM_SIDE_IN_PIXELS * getScale());
+		mineCounter.setLocation(sideShift, (getHeight() - mineCounter.getHeight()) / 2);
+		stopwatch.setLocation(getWidth() - sideShift - stopwatch.getWidth(), (getHeight() - stopwatch.getHeight()) / 2);
 
 		smile.addMouseListener(new SmileListener());
 
-		add(smile);
-		add(mineCounter);
-		add(stopwatch);
-	}
-
-	public void resetScale() {  // todo fix and possibly get rid of
-		float scale = Game.getScale();
-		smile.setScale(scale);
-	}
-
-//	@Override
-	protected void locateElements() {  // todo remove
-		// position smile in the center
-		smile.setLocation((getWidth() - smile.getSmileSize()) / 2, (getHeight() - smile.getSmileSize()) / 2);
-
-		int sideShift = (int) (DEFAULT_SHIFT_FROM_SIDE_IN_PIXELS * Game.getScale());
-
-		mineCounter.setLocation(sideShift, (getHeight() - mineCounter.getHeight()) / 2);
-		stopwatch.setLocation(getWidth() - sideShift - stopwatch.getWidth(), (getHeight() - stopwatch.getHeight()) / 2);
-	}
-
-	public void resetImages() {
-		smile.resetImages();
-		mineCounter.loadImages();
-//		timer.loadImages();
+		addChild(smile);
+		addChild(mineCounter);
+		addChild(stopwatch);
 	}
 
 	// setters and getters

@@ -1,15 +1,14 @@
 package header.display;
 
-import defaultPackage.WindowElement;
-
+import defaultPackage.CompoundElement;
 import java.awt.*;
 
 /**
  * Class of 3 7-segment displays in a row.
  * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
+ * Copyright © Kovalenko Lev (Sweeper) 2016-2022. All rights reserved.
  */
-public class Counter extends WindowElement {
+public class Counter extends CompoundElement {
 
 	/** a number to display */
 	private int value;
@@ -23,7 +22,7 @@ public class Counter extends WindowElement {
 
 		for (int i = 0; i < display.length; i++) {
 			display[i] = new SevenSegmentDisplay();
-			add(display[i]);
+			addChild(display[i]);
 		}
 
 		setValue(value);
@@ -67,10 +66,10 @@ public class Counter extends WindowElement {
 		return value;
 	}
 
-	public void loadImages() {  // todo
-		SevenSegmentDisplay.loadImages();
-		setValue();
-	}
+//	public void loadImages() {  // todo
+//		SevenSegmentDisplay.loadImages();
+//		setValue();
+//	}
 
 	/**
 	 * Override default scaled size calculation to adopt to size of 7-segment display.

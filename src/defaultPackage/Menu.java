@@ -8,16 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import menuListeners.Amateur;
-import menuListeners.Beginner;
-import menuListeners.Expert;
-import menuListeners.FlagHelper;
-import menuListeners.ImagePackChanger;
-import menuListeners.OpenHelper;
-import menuListeners.Scale100;
-import menuListeners.Scale150;
-import menuListeners.Scale200;
-import menuListeners.SolveHelper;
+import menuListeners.*;
 
 public class Menu {
 
@@ -50,6 +41,10 @@ public class Menu {
 		JMenuItem expert = new JMenuItem("Expert");
 		expert.addActionListener(new Expert());
 		newGame.add(expert);
+
+		JMenuItem pro = new JMenuItem("Pro");
+		expert.addActionListener(new Pro());
+		newGame.add(pro);
 	}
 
 	private void createMenuOptions() {

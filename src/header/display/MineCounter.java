@@ -2,7 +2,7 @@ package header.display;
 
 /**
  * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
+ * Copyright © Kovalenko Lev (Sweeper) 2016-2022. All rights reserved.
  */
 public class MineCounter extends Counter {
 	private int minesCount = 0;

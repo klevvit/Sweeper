@@ -25,8 +25,8 @@ public class Minefield {
 	private int cellsOpened = 0;
 
 	private float scale = Game.getScale();
-	public static final int WIDTH_MAX = 75;
-	public static final int HEIGHT_MAX = 50;
+	public static final int WIDTH_MAX = 99;
+	public static final int HEIGHT_MAX = 99;
 	public static final int LEVEL_BEGINNER = 1;
 	public static final int LEVEL_AMATEUR = 2;
 	public static final int LEVEL_EXPERT = 3;

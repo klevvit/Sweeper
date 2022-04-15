@@ -5,8 +5,8 @@ import java.util.Date;
 
 /**
  * Class that displays stopwatch that can show time from its start or frozen at some moment value. <br>
- * Important: <code>stop()</code> this stopwatch before losing link to this object!
- * Or just use the same timer object instead.
+ * Important: <code>freeze()</code> or <code>reset()</code> this stopwatch before losing link to this object!
+ * Or just use the same Stopwatch object instead.
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
  */
@@ -89,7 +89,7 @@ public class Stopwatch extends Counter {
 
 	/** Stops display updates if stopwatch was launched. Shows zero. <br>
 	 *  Note: <code>resume()</code> call will show time since last <code>start()</code> call. To start timer from zero,
-	 *  use 
+	 *  use todo
 	 */
 	public void reset() {
 		timer.stop();

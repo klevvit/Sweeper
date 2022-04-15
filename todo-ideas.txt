@@ -7,9 +7,11 @@
 
 - For scale change we need to:
 1. update dimensions for all WindowElements
-2. load all static images
-3. update imageNow for all Drawables
-4. repaint everything  // just call frame.repaint()?
+2. update location for all WindowElements
+
+3. load all static images
+4. update imageNow for all Drawables
+5. repaint everything  // just call frame.repaint()?
 
 Somehow we need to go through all window elements and then through all drawables.
 Let's implement interface for returning WindowElements and Drawables element contains.

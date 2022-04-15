@@ -1,7 +1,7 @@
 package defaultPackage;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Dimension;
 
 /**
  * Class for all minesweeper elements that are shown in the window.
@@ -9,13 +9,24 @@ import java.awt.*;
  */
 public abstract class WindowElement extends JPanel {
 
+    private static float scale = 1.0f;
     /** element width for scale = 1 */
-    private final int SIZE_X;
+    protected final int SIZE_X;
     /** element height for scale = 1 */
-    private final int SIZE_Y;
+    protected final int SIZE_Y;
+
+    /** returns current scale for all window elements **/
+    public static float getScale() {
+        return scale;
+    }
+
+    public static void setScale(float sc) {
+        scale = sc;
+    }
 
     /**
      * Memorises element dimensions and sets its real size.
+     *
      * @param SIZE_X width for scale = 1 in pixels
      * @param SIZE_Y height for scale = 1 in pixels
      */
@@ -26,10 +37,12 @@ public abstract class WindowElement extends JPanel {
         setSize(getScaledSize());
     }
 
-    /** Returns scaled size in pixels */
+    /** Returns scaled size in pixels
+     * todo necessary?
+     */
     protected Dimension getScaledSize(int defaultSizeX, int defaultSizeY) {
-        int realSizeX = (int) (defaultSizeX * Game.getScale());
-        int realSizeY = (int) (defaultSizeY * Game.getScale());
+        int realSizeX = (int) (defaultSizeX * scale);
+        int realSizeY = (int) (defaultSizeY * scale);
 
         return new Dimension(realSizeX, realSizeY);
     }
@@ -39,19 +52,7 @@ public abstract class WindowElement extends JPanel {
         return getScaledSize(SIZE_X, SIZE_Y);
     }
 
-    /** Sets location for elements which this element contain. Empty by default. */
-//    protected void locateElements() {} todo remove
+    /** Sets its size according to current Game scale. */
+    abstract public void updateSize();
 
-    /** Updates element size if scale was changed. todo remove method  */
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        Dimension newSize = getScaledSize();
-//
-//        if (!getSize().equals(newSize)) {
-//            locateElements();
-//            setSize(newSize);
-//        }
-//
-//        super.paintComponent(g);
-//    }
 }
