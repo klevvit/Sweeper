@@ -1,5 +1,5 @@
 # Sweeper
-My old "minesweeper" game.
+My old "minesweeper" game. Download is [here](https://github.com/klevvit/Sweeper#download)
 
 ## Disclaimer
 - This was my first serious IT project, so it contains tons of bad (and strange) coding.
@@ -45,7 +45,7 @@ when the game ends.
 
 ## Controls
 
-Use left-click on a cell to open it. To start the game, open any cell.
+Use left-click on a cell to open it. To start a game, open any cell.
 
 ![left click](screenshots/02_left_click.png)
 ![started](screenshots/03_started.png)
@@ -77,11 +77,11 @@ the flag:
 
 ## End of game
 
-You uncover all the cells without mines - you win:
+You uncover all the cells without mines — you win:
 
 ![win](screenshots/07_win.png)
 
-You open a cell with mine - you lose:
+You open a cell with mine — you lose:
 
 ![lose](screenshots/08_lose.png)
 
@@ -100,7 +100,7 @@ The game has 3 difficulty levels. Switching between them is available from `New 
 
 ![amateur](screenshots/10_amateur.png)
 
-`Expert` level has 30x16 field with 99 mines; density is one mine per 4.85 cells:
+`Expert` level has 30x16 field with 99 mines; density is one mine per about 4.85 cells:
 
 ![expert](screenshots/11_expert.png)
 
