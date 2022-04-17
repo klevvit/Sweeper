@@ -258,18 +258,18 @@ public class SolveHelper implements ActionListener {
 	@SuppressWarnings("unchecked")
 	private void createGroups() {
 		map = new HashMap<Integer, CellGroup>();
-		groups = new ArrayList[field.getWidth()][field.getHeight()];
-		for (int i = 0; i < field.getWidth(); i++)
-			for (int j = 0; j < field.getHeight(); j++)
+		groups = new ArrayList[field.getWidthCells()][field.getHeightCells()];
+		for (int i = 0; i < field.getWidthCells(); i++)
+			for (int j = 0; j < field.getHeightCells(); j++)
 				groups[i][j] = new ArrayList<Integer>();
 		
-		for (int i = 0; i < field.getWidth(); i++)
-			for (int j = 0; j < field.getHeight(); j++)
+		for (int i = 0; i < field.getWidthCells(); i++)
+			for (int j = 0; j < field.getHeightCells(); j++)
 				addGroup(i, j);
 		
 		ArrayList<Cell> fullFieldList = new ArrayList<Cell>();
-		for (int i = 0; i < field.getWidth(); i++)
-			for (int j = 0; j < field.getHeight(); j++) {
+		for (int i = 0; i < field.getWidthCells(); i++)
+			for (int j = 0; j < field.getHeightCells(); j++) {
 				fullFieldList.add(field.getCell(i, j));
 			}
 		CellGroup fullFieldGroup = new CellGroup(field.getMinesCount(), fullFieldList);

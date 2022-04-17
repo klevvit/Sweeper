@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 import java.awt.Dimension;
 
 /**
- * Class for all minesweeper elements that are shown in the window.
- * Controls width and height for the element and adopts them to the scale set in the Game class.
+ * Class for all resizable minesweeper elements that are shown in the window.
+ * Controls width and height for the element and adopts them to the set scale.
  */
 public abstract class WindowElement extends JPanel {
 

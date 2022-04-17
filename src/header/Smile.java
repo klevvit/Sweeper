@@ -3,7 +3,6 @@ package header;
 import defaultPackage.Drawable;
 import defaultPackage.Game;
 
-import java.awt.Graphics;
 import java.awt.Image;
 
 /**
@@ -12,7 +11,7 @@ import java.awt.Image;
  */
 public class Smile extends Drawable {
 
-	public static final String imageFolder = "smile";
+	public static final String imageFolderName = "smile";
 	private static Image imageSmile;
 	private static Image imagePressed;
 	private static Image imageScared;
@@ -36,11 +35,11 @@ public class Smile extends Drawable {
 
 	/** Updates all Image variables. */
 	public static void loadImages() {
-		imageSmile = Game.getPackNow().getImage(imageFolder, "Smile");
-		imagePressed = Game.getPackNow().getImage(imageFolder, "Pressed");
-		imageScared = Game.getPackNow().getImage(imageFolder, "Scared");
-		imageDead = Game.getPackNow().getImage(imageFolder, "Dead");
-		imageVictory = Game.getPackNow().getImage(imageFolder, "Victory");
+		imageSmile = Game.getPackNow().getImage(imageFolderName, "Smile");
+		imagePressed = Game.getPackNow().getImage(imageFolderName, "Pressed");
+		imageScared = Game.getPackNow().getImage(imageFolderName, "Scared");
+		imageDead = Game.getPackNow().getImage(imageFolderName, "Dead");
+		imageVictory = Game.getPackNow().getImage(imageFolderName, "Victory");
 
 //		todo probably get rid of
 //		if (!isPressed) {

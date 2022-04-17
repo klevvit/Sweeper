@@ -33,8 +33,8 @@ public class OpenHelper implements ActionListener {
 			isAnythingChanged = false;
 
 			try {
-				for (int i = 0; i < field.getWidth(); i++) {
-					for (int j = 0; j < field.getHeight(); j++) {
+				for (int i = 0; i < field.getWidthCells(); i++) {
+					for (int j = 0; j < field.getHeightCells(); j++) {
 						if (cell[i][j].getOpened() && cell[i][j].getDigit() != 0
 								&& cell[i][j].getDigit() == countFlagsAround(cell[i][j])) {
 							openAround(i, j);

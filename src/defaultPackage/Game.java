@@ -15,7 +15,6 @@ import header.Header;
 public class Game {
 
 	static JFrame frame;
-	private static Menu menu;
 	private static Header header;
 	private static Minefield minefield;
 	private static Border border;
@@ -27,8 +26,6 @@ public class Game {
 
 	private static boolean isGameOn = false;
 
-
-//	private static float scale = 2f;  todo get rid of
 	private static final float EPS_F = 0.0001f;
 
 	private static final ImagePack[] PACK = ImagePack.getDefaultPackSet();
@@ -47,10 +44,8 @@ public class Game {
 		frame.setTitle("Sweeper");
 		setIcon();
 
-
-
-		menu = new Menu();
-		frame.getContentPane().add(BorderLayout.NORTH, menu.getMenuBar());
+		MenuBar menu = new MenuBar();
+		frame.getContentPane().add(BorderLayout.NORTH, menu);
 
 		launchNewGame();
         frame.addKeyListener(new KeyReader());  // key bindings for opening cells, setting flags, etc.
@@ -161,7 +156,7 @@ public class Game {
 
 		frame.remove(mainPanel);
 		header.updateSize();
-		minefield.resetScale();
+//		minefield.resetScale();
 		border = new Border();
 		mainPanel = border.getPanel();
 		mainPanel.setBackground(Color.WHITE);

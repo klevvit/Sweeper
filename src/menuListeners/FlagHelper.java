@@ -36,8 +36,8 @@ public class FlagHelper implements ActionListener {
 		if (Game.isGameOn()) {
 			if (!isField)
 				getField();
-			for (int i = 0; i < field.getWidth(); i++) {
-				for (int j = 0; j < field.getHeight(); j++) {
+			for (int i = 0; i < field.getWidthCells(); i++) {
+				for (int j = 0; j < field.getHeightCells(); j++) {
 					field.setFlag(i, j, false);
 				}
 			}
@@ -54,8 +54,8 @@ public class FlagHelper implements ActionListener {
 
 			try {
 
-				for (int i = 0; i < field.getWidth(); i++) {
-					for (int j = 0; j < field.getHeight(); j++) {
+				for (int i = 0; i < field.getWidthCells(); i++) {
+					for (int j = 0; j < field.getHeightCells(); j++) {
 						if (cell[i][j].getOpened() && cell[i][j].getDigit() != 0
 								&& cell[i][j].getDigit() == countClosedCellsAround(cell[i][j])) {
 							setFlagsAround(i, j);

@@ -31,12 +31,10 @@ public class Border {
 
 	public Border() {
 		Minefield field = Game.getMinefield();
-		minefieldPanel = field.getPanel();
-		minefieldWidth = field.getWidth();
-		minefieldHeight = field.getHeight();
-		Header header = Game.getHeader();
-//		headerPanel = header.getPanel();  todo just commented and wrote the next line
-		headerPanel = header;
+		minefieldPanel = field;
+		minefieldWidth = field.getWidthCells();
+		minefieldHeight = field.getHeightCells();
+		headerPanel = Game.getHeader();
 		headerHeight = Header.HEIGHT_IN_CELLS;
 		borderHor = new BorderFragment[minefieldWidth][3];
 		borderVert = new BorderFragment[2][minefieldHeight + headerHeight + 3];
@@ -103,14 +101,14 @@ public class Border {
 	}
 
 	public void resetImages() {
-		for (int i = 0; i < borderHor.length; i++) {
-			for (int j = 0; j < borderHor[i].length; j++) {
-				borderHor[i][j].resetImage();
+		for (BorderFragment[] fragments : borderHor) {
+			for (BorderFragment fragment : fragments) {
+				fragment.resetImage();
 			}
 		}
-		for (int i = 0; i < borderVert.length; i++) {
-			for (int j = 0; j < borderVert[i].length; j++) {
-				borderVert[i][j].resetImage();
+		for (BorderFragment[] fragments : borderVert) {
+			for (BorderFragment fragment : fragments) {
+				fragment.resetImage();
 			}
 		}
 	}

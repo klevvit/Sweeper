@@ -4,35 +4,28 @@
  */
 package defaultPackage;
 
-import java.awt.Graphics;
 import java.awt.Image;
-import java.util.InvalidPropertiesFormatException;
 
 import javax.naming.NoPermissionException;
-import javax.swing.JPanel;
 
-public class Cell extends JPanel implements Comparable<Cell> {
+public class Cell extends Drawable implements Comparable<Cell> {
 
 	private static final long serialVersionUID = 8464539739576885428L;
-	public static final int MINED = -1;
-	public static final int NOT_OPENED = -2;
-	public static String cellFolder;
+	public static final int MINED = -1;  // todo use enums
+	public static final int NOT_OPENED = -2;  // todo use enums
+	public static final String imageFolderName = "cells";
 	private static Image imageClosed;
 	private static Image imageFlag;
 	private static Image imageMine;
 	private static Image imageMineWrong;
 	private static Image imageMineExploded;
 	private static Image[] imageDigit = new Image[9];
-	private Image imageNow = imageClosed;
-	private static float scale;
-	private static int size;
+//	private Image imageNow = imageClosed;  todo change to Drawable.currentImage
+	public static final int SIZE = 16;
 
-	public static final int DEFAULT_SIZE_IN_PIXELS = 16;
+	private static boolean safeMode = true;  // todo write meaning
 
-
-	private static boolean safeMode = true;
-
-	private boolean isOpened = false;
+	private boolean isOpened = false;  // todo use enums instead of many booleans
 	private boolean isPressed = false;
 	private boolean isMine = false;
 	private boolean isFlag = false;
@@ -43,45 +36,38 @@ public class Cell extends JPanel implements Comparable<Cell> {
 	private final int posY;
 
 	static {
-		resetImages();
+		loadImages();
 	}
 
-	public static void resetImages() {
-		cellFolder = "cells";
-
-		imageClosed = Game.getPackNow().getImage(cellFolder, "Closed");
-		imageFlag = Game.getPackNow().getImage(cellFolder, "Flag");
-		imageMine = Game.getPackNow().getImage(cellFolder, "Mine");
-		imageMineWrong = Game.getPackNow().getImage(cellFolder, "MineWrong");
-		imageMineExploded = Game.getPackNow().getImage(cellFolder, "MineExploded");
+	public static void loadImages() {
+		imageClosed = Game.getPackNow().getImage(imageFolderName, "Closed");
+		imageFlag = Game.getPackNow().getImage(imageFolderName, "Flag");
+		imageMine = Game.getPackNow().getImage(imageFolderName, "Mine");
+		imageMineWrong = Game.getPackNow().getImage(imageFolderName, "MineWrong");
+		imageMineExploded = Game.getPackNow().getImage(imageFolderName, "MineExploded");
 		for (int i = 0; i <= 8; i++) {
-			imageDigit[i] = Game.getPackNow().getImage(cellFolder, Integer.toString(i));
+			imageDigit[i] = Game.getPackNow().getImage(imageFolderName, Integer.toString(i));
 		}
 
 	}
 
 	public Cell(int posX, int posY) {
+		super(SIZE, SIZE, imageClosed);
 		this.posX = posX;
 		this.posY = posY;
-		setSize(size, size);
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-		g.drawImage(imageNow, 0, 0, size, size, this);
 	}
 
 	public void press() {
 		if (!isPressed && !isOpened && !isFlag) {
 			isPressed = true;
-			imageNow = imageDigit[0];
+			currentImage = imageDigit[0];
 		}
 	}
 
 	public void release() {
 		if (isPressed && !isOpened) {
 			isPressed = false;
-			imageNow = imageClosed;
+			currentImage = imageClosed;
 		}
 	}
 
@@ -99,10 +85,10 @@ public class Cell extends JPanel implements Comparable<Cell> {
 		isShown = true;
 		isPressed = false;
 		if (isMine) {
-			imageNow = imageMineExploded;
+			currentImage = imageMineExploded;
 			return MINED;
 		} else {
-			imageNow = imageDigit[digit];
+			currentImage = imageDigit[digit];
 			return digit;
 		}
 	}
@@ -115,9 +101,9 @@ public class Cell extends JPanel implements Comparable<Cell> {
 			return false;
 		isFlag = state;
 		if (isFlag) {
-			imageNow = imageFlag;
+			currentImage = imageFlag;
 		} else {
-			imageNow = imageClosed;
+			currentImage = imageClosed;
 		}
 		return true;
 	}
@@ -132,9 +118,9 @@ public class Cell extends JPanel implements Comparable<Cell> {
 		
 		isFlag = !isFlag;
 		if (isFlag) {
-			imageNow = imageFlag;
+			currentImage = imageFlag;
 		} else {
-			imageNow = imageClosed;
+			currentImage = imageClosed;
 		}
 		return true;
 	}
@@ -142,10 +128,10 @@ public class Cell extends JPanel implements Comparable<Cell> {
 	public void showMine() throws NoPermissionException {
 		if (!safeMode) {
 			if (!isOpened && isMine && !isFlag) {
-				imageNow = imageMine;
+				currentImage = imageMine;
 				isShown = true;
 			} else if (!isOpened && isFlag && !isMine) {
-				imageNow = imageMineWrong;
+				currentImage = imageMineWrong;
 				isShown = true;
 			}
 		} else
@@ -164,39 +150,30 @@ public class Cell extends JPanel implements Comparable<Cell> {
 			throw new NoPermissionException("Safe mode is on.");
 	}
 
-	public void resetSize() {
-		setSize(size, size);
-	}
-
 	public void reset() {
 		if (!isOpened) {
 			if (isPressed) {
-				imageNow = imageDigit[0];
+				currentImage = imageDigit[0];
 			} else if (isFlag) {
 				if (isShown && !isMine) {
-					imageNow = imageMineWrong;
+					currentImage = imageMineWrong;
 				} else {
-					imageNow = imageFlag;
+					currentImage = imageFlag;
 				}
 			} else if (isShown && isMine) {
-				imageNow = imageMine;
+				currentImage = imageMine;
 			} else {
-				imageNow = imageClosed;
+				currentImage = imageClosed;
 			}
 		} else if (isMine) {
-			imageNow = imageMineExploded;
+			currentImage = imageMineExploded;
 		} else {
-			imageNow = imageDigit[digit];
+			currentImage = imageDigit[digit];
 		}
 
 	}
 
 	// setters and getters
-
-	public static void setScale(float sc) {
-		scale = sc;
-		size = (int) (16 * scale);
-	}
 
 	public int x() {
 		return posX;
@@ -257,7 +234,7 @@ public class Cell extends JPanel implements Comparable<Cell> {
 	}
 
 	public static int getCellSize() {
-		return size;
+		return (int) (SIZE * getScale());
 	}
 
 	public static void setSafeMode(boolean mode) {

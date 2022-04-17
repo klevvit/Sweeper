@@ -21,7 +21,7 @@ public class Header extends CompoundElement {
 	private final Stopwatch stopwatch;
 
 	public Header(int widthInCells) {
-		super(widthInCells * Cell.DEFAULT_SIZE_IN_PIXELS, HEIGHT_IN_CELLS * Cell.DEFAULT_SIZE_IN_PIXELS);
+		super(widthInCells * Cell.SIZE, HEIGHT_IN_CELLS * Cell.SIZE);
 
 		setLayout(null);  // todo change
 
