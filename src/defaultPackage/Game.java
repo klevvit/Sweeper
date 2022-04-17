@@ -3,9 +3,7 @@ package defaultPackage;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import borderFragments.BorderFragment;
 import header.Header;
 
 /**
@@ -17,8 +15,7 @@ public class Game {
 	static JFrame frame;
 	private static Header header;
 	private static Minefield minefield;
-	private static Border border;
-	private static JPanel mainPanel = null;  // TODO what is this?
+	private static Border border = null;
 
 	private static int cellCountX = 10;
 	private static int cellCountY = 10;
@@ -64,14 +61,15 @@ public class Game {
 	}
 
 	public static void launchNewGame() {
-		removeMainPanel();
+		if (border != null) {
+			header.getStopwatch().freeze();
+			frame.remove(border);
+		}
 		header = new Header(cellCountX);
 		minefield = new Minefield(cellCountX, cellCountY, minesCount);
 		minefield.create();
 		border = new Border();
-		mainPanel = border.getPanel();
-		mainPanel.setBackground(Color.WHITE);
-		frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+		frame.getContentPane().add(BorderLayout.CENTER, border);
 		frame.revalidate();
 
 		frame.setSize(calcFrameSize());
@@ -101,12 +99,6 @@ public class Game {
         int windowY = (screenSize.height - frame.getHeight()) / 2;
         frame.setLocation(windowX, windowY);
     }
-
-	private static void removeMainPanel() {
-		if (mainPanel != null) {
-			frame.remove(mainPanel);
-		}
-	}
 
 	public static void lose() {
 		if (!isGameOn)
@@ -151,21 +143,16 @@ public class Game {
 
 
 		minefield.resetImages();
-		border.resetImages();
 		repaint();
 
-		frame.remove(mainPanel);
+		header.getStopwatch().freeze();
+		frame.remove(border);
 		header.updateSize();
-//		minefield.resetScale();
 		border = new Border();
-		mainPanel = border.getPanel();
-		mainPanel.setBackground(Color.WHITE);
-		frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+		frame.getContentPane().add(BorderLayout.CENTER, border);
 		frame.revalidate();
 
-
 		frame.setSize(calcFrameSize());
-
 		frame.repaint();
 	}
 
@@ -180,8 +167,8 @@ public class Game {
 		}
 
 		return new Dimension(
-				cellCountX * Cell.getCellSize() + 2 * BorderFragment.getSizeSmall() + frame_correction[0],
-				(cellCountY + Header.HEIGHT_IN_CELLS) * Cell.getCellSize() + 3 * BorderFragment.getSizeSmall()
+				cellCountX * Cell.getCellSize() + 2 * BorderFragment.getSmallSize() + frame_correction[0],
+				(cellCountY + Header.HEIGHT_CELLS) * Cell.getCellSize() + 3 * BorderFragment.getSmallSize()
 						+ frame_correction[1]);
 	}
 
@@ -225,7 +212,6 @@ public class Game {
 
 		// reset images todo try to separate scale update from image update
 		minefield.resetImages();
-		border.resetImages();
 		repaint();
 	}
 

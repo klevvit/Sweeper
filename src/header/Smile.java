@@ -9,9 +9,9 @@ import java.awt.Image;
  * @author Kovalenko Lev
  * Copyright © Kovalenko Lev (Sweeper) 2016-2022. All rights reserved.
  */
-public class Smile extends Drawable {
+public class Smile extends Drawable {  // todo bug: no reaction on pressing / winning
 
-	public static final String imageFolderName = "smile";
+	private static final String IMAGE_FOLDER_NAME = "smile";
 	private static Image imageSmile;
 	private static Image imagePressed;
 	private static Image imageScared;
@@ -35,11 +35,11 @@ public class Smile extends Drawable {
 
 	/** Updates all Image variables. */
 	public static void loadImages() {
-		imageSmile = Game.getPackNow().getImage(imageFolderName, "Smile");
-		imagePressed = Game.getPackNow().getImage(imageFolderName, "Pressed");
-		imageScared = Game.getPackNow().getImage(imageFolderName, "Scared");
-		imageDead = Game.getPackNow().getImage(imageFolderName, "Dead");
-		imageVictory = Game.getPackNow().getImage(imageFolderName, "Victory");
+		imageSmile = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Smile");
+		imagePressed = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Pressed");
+		imageScared = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Scared");
+		imageDead = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Dead");
+		imageVictory = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Victory");
 
 //		todo probably get rid of
 //		if (!isPressed) {

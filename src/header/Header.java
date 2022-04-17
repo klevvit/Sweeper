@@ -13,7 +13,7 @@ import java.awt.Color;
 public class Header extends CompoundElement {
 
 	/** header height measured in minefield cells */
-	public static final int HEIGHT_IN_CELLS = 2;
+	public static final int HEIGHT_CELLS = 2;
 	public static final int DEFAULT_SHIFT_FROM_SIDE_IN_PIXELS = 6;
 
 	private final Smile smile;
@@ -21,7 +21,7 @@ public class Header extends CompoundElement {
 	private final Stopwatch stopwatch;
 
 	public Header(int widthInCells) {
-		super(widthInCells * Cell.SIZE, HEIGHT_IN_CELLS * Cell.SIZE);
+		super(widthInCells * Cell.SIZE, HEIGHT_CELLS * Cell.SIZE);
 
 		setLayout(null);  // todo change
 

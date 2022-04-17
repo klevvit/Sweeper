@@ -39,7 +39,7 @@ public class Minefield extends CompoundElement {
 		Game.setGameOn(true);
 	}
 
-	public void create() {
+	public void create() {  // todo get rid of and move to constructor
 
 		cell = new Cell[SIZE_X][SIZE_Y];
 		CellListener cellListener = new CellListener();

@@ -37,6 +37,15 @@ public abstract class WindowElement extends JPanel {
         setSize(getScaledSize());
     }
 
+    /**
+     * Memorises element dimensions and sets its real size.
+     *
+     * @param dimension dimension for scale = 1 in pixels
+     */
+    protected WindowElement(Dimension dimension) {
+        this(dimension.width, dimension.height);
+    }
+
     /** Returns scaled size in pixels
      * todo necessary?
      */

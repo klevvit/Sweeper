@@ -10,17 +10,15 @@ import javax.naming.NoPermissionException;
 
 public class Cell extends Drawable implements Comparable<Cell> {
 
-	private static final long serialVersionUID = 8464539739576885428L;
 	public static final int MINED = -1;  // todo use enums
 	public static final int NOT_OPENED = -2;  // todo use enums
-	public static final String imageFolderName = "cells";
+	private static final String IMAGE_FOLDER_NAME = "cells";
 	private static Image imageClosed;
 	private static Image imageFlag;
 	private static Image imageMine;
 	private static Image imageMineWrong;
 	private static Image imageMineExploded;
-	private static Image[] imageDigit = new Image[9];
-//	private Image imageNow = imageClosed;  todo change to Drawable.currentImage
+	private static final Image[] imageDigit = new Image[9];
 	public static final int SIZE = 16;
 
 	private static boolean safeMode = true;  // todo write meaning
@@ -40,13 +38,13 @@ public class Cell extends Drawable implements Comparable<Cell> {
 	}
 
 	public static void loadImages() {
-		imageClosed = Game.getPackNow().getImage(imageFolderName, "Closed");
-		imageFlag = Game.getPackNow().getImage(imageFolderName, "Flag");
-		imageMine = Game.getPackNow().getImage(imageFolderName, "Mine");
-		imageMineWrong = Game.getPackNow().getImage(imageFolderName, "MineWrong");
-		imageMineExploded = Game.getPackNow().getImage(imageFolderName, "MineExploded");
+		imageClosed = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Closed");
+		imageFlag = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Flag");
+		imageMine = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "Mine");
+		imageMineWrong = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "MineWrong");
+		imageMineExploded = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, "MineExploded");
 		for (int i = 0; i <= 8; i++) {
-			imageDigit[i] = Game.getPackNow().getImage(imageFolderName, Integer.toString(i));
+			imageDigit[i] = Game.getPackNow().getImage(IMAGE_FOLDER_NAME, Integer.toString(i));
 		}
 
 	}

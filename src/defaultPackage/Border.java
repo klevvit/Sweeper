@@ -1,119 +1,109 @@
-/**
- * @author Kovalenko Lev
- * Copyright © Kovalenko Lev (Sweeper) 2016-2020. All rights reserved.
- */
+
 package defaultPackage;
 
-import javax.swing.JPanel;
-
-import borderFragments.BorderFragment;
-import borderFragments.CenterEast;
-import borderFragments.CenterWest;
-import borderFragments.Horizontal;
-import borderFragments.NorthEast;
-import borderFragments.NorthWest;
-import borderFragments.SouthEast;
-import borderFragments.SouthWest;
-import borderFragments.Vertical;
 import header.Header;
 
-public class Border {
+/**
+ * @author Kovalenko Lev
+ * Copyright © Kovalenko Lev (Sweeper) 2016-2022. All rights reserved.
+ */
+public class Border extends CompoundElement {
 
-	private final BorderFragment[][] borderHor; // horizontal
-	private final BorderFragment[][] borderVert; // vertical
-	private final JPanel myPanel = new JPanel(null);
+	private final BorderFragment[][] borderHorizontal;  // holds only horizontal fragments
+	private final BorderFragment[][] borderVertical;  // holds all fragments of left and right column
 
-	private final JPanel minefieldPanel;
-	private final int minefieldWidth; // of the borderHor array
-	private final int minefieldHeight;
-	private final JPanel headerPanel;
-	private final int headerHeight;
+	private final Minefield minefield;
+	private final int minefieldWidthCells; // length of the borderHorizontal array
+	private final int minefieldHeightCells;
+	private final Header header;
+	private final int headerHeightCells;
 
 	public Border() {
-		Minefield field = Game.getMinefield();
-		minefieldPanel = field;
-		minefieldWidth = field.getWidthCells();
-		minefieldHeight = field.getHeightCells();
-		headerPanel = Game.getHeader();
-		headerHeight = Header.HEIGHT_IN_CELLS;
-		borderHor = new BorderFragment[minefieldWidth][3];
-		borderVert = new BorderFragment[2][minefieldHeight + headerHeight + 3];
+		super(Cell.SIZE * (Game.getMinefield().getWidthCells() + 2),
+				Cell.SIZE * (Header.HEIGHT_CELLS + Game.getMinefield().getHeightCells() + 3));
+		minefield = Game.getMinefield();  // todo i think we need to create minefield ourselves here;
+		minefieldWidthCells = minefield.getWidthCells();
+		minefieldHeightCells = minefield.getHeightCells();
+		header = Game.getHeader();  // todo create header ourselves
+		headerHeightCells = Header.HEIGHT_CELLS;
+		borderHorizontal = new BorderFragment[minefieldWidthCells][3];
+		borderVertical = new BorderFragment[2][minefieldHeightCells + headerHeightCells + 3];
 		create();
 	}
 
 	private void create() {
-		BorderFragment.resetScale();
-		for (int i = 0; i < minefieldWidth; i++) {
+		setLayout(null);  // todo get rid of
+
+		for (int i = 0; i < minefieldWidthCells; i++) {
+
 			for (int j = 0; j <= 2; j++) {
-				borderHor[i][j] = new Horizontal();
-				borderHor[i][j].setSize(borderHor[i][j].getSizeX(), borderHor[i][j].getSizeY());
-				borderHor[i][j].setLocation(BorderFragment.getSizeSmall() + i * Cell.getCellSize(),
-						j == 0 ? 0
-								: j == 1 ? BorderFragment.getSizeSmall() + headerHeight * Cell.getCellSize()
-										: 2 * BorderFragment.getSizeSmall()
-												+ Cell.getCellSize() * (minefieldHeight + headerHeight));
-				myPanel.add(borderHor[i][j]);
+				borderHorizontal[i][j] = new BorderFragment(BorderFragment.Type.HORIZONTAL);
+				addChild(borderHorizontal[i][j]);
 			}
+
+			int horizontalX = BorderFragment.getSmallSize() + i * Cell.getCellSize();
+			borderHorizontal[i][0].setLocation(horizontalX, 0);
+			borderHorizontal[i][1].setLocation(horizontalX,
+					BorderFragment.getSmallSize() + headerHeightCells * Cell.getCellSize());
+			borderHorizontal[i][2].setLocation(horizontalX,
+					2 * BorderFragment.getSmallSize()
+							+ Cell.getCellSize() * (minefieldHeightCells + headerHeightCells));
 		}
 
 		for (int i = 0; i <= 1; i++) {
 
-			for (int j = 0; j < minefieldHeight + headerHeight + 3; j++) {
+			for (int j = 0; j < minefieldHeightCells + headerHeightCells + 3; j++) {
 
 				if (j == 0) {
 					if (i == 0) {
-						borderVert[i][j] = new NorthWest();
+						borderVertical[i][j] = new BorderFragment(BorderFragment.Type.NORTH_WEST);
 					} else {
-						borderVert[i][j] = new NorthEast();
+						borderVertical[i][j] = new BorderFragment(BorderFragment.Type.NORTH_EAST);
 					}
-				} else if (j == headerHeight + 1) {
+				} else if (j == headerHeightCells + 1) {
 					if (i == 0) {
-						borderVert[i][j] = new CenterWest();
+						borderVertical[i][j] = new BorderFragment(BorderFragment.Type.CENTER_WEST);
 					} else {
-						borderVert[i][j] = new CenterEast();
+						borderVertical[i][j] = new BorderFragment(BorderFragment.Type.CENTER_EAST);
 					}
-				} else if (j == (minefieldHeight + headerHeight + 2)) {
+				} else if (j == (minefieldHeightCells + headerHeightCells + 2)) {
 					if (i == 0) {
-						borderVert[i][j] = new SouthWest();
+						borderVertical[i][j] = new BorderFragment(BorderFragment.Type.SOUTH_WEST);
 					} else {
-						borderVert[i][j] = new SouthEast();
+						borderVertical[i][j] = new BorderFragment(BorderFragment.Type.SOUTH_EAST);
 					}
 				} else {
-					borderVert[i][j] = new Vertical();
+					borderVertical[i][j] = new BorderFragment(BorderFragment.Type.VERTICAL);
 				}
 
-				borderVert[i][j].setSize(borderVert[i][j].getSizeX(), borderVert[i][j].getSizeY());
-				borderVert[i][j].setLocation(
-						i == 0 ? 0 : borderVert[i][j].getSizeX() + Cell.getCellSize() * minefieldWidth,
+//				borderVertical[i][j].setSize(borderVertical[i][j].getSizeX(), borderVertical[i][j].getSizeY());  todo remove
+				borderVertical[i][j].setLocation(
+						i == 0 ? 0 : BorderFragment.getSmallSize() + Cell.getCellSize() * minefieldWidthCells,
 						j == 0 ? 0
-								: j <= headerHeight + 1
-										? BorderFragment.getSizeSmall() + (j - 1) * BorderFragment.getSizeBig()
-										: 2 * BorderFragment.getSizeSmall() + (j - 2) * BorderFragment.getSizeBig());
-				myPanel.add(borderVert[i][j]);
+								: j <= headerHeightCells + 1
+								? BorderFragment.getSmallSize() + (j - 1) * BorderFragment.getBigSize()
+								: 2 * BorderFragment.getSmallSize() + (j - 2) * BorderFragment.getBigSize());
+				addChild(borderVertical[i][j]);
 			}
 		}
-		headerPanel.setLocation(BorderFragment.getSizeSmall(), BorderFragment.getSizeSmall());
-		myPanel.add(headerPanel);
-		minefieldPanel.setLocation(BorderFragment.getSizeSmall(),
-				2 * BorderFragment.getSizeSmall() + headerHeight * Cell.getCellSize());
-		myPanel.add(minefieldPanel);
+		header.setLocation(BorderFragment.getSmallSize(), BorderFragment.getSmallSize());
+		addChild(header);
+		minefield.setLocation(BorderFragment.getSmallSize(),
+				2 * BorderFragment.getSmallSize() + headerHeightCells * Cell.getCellSize());
+		addChild(minefield);
 
 	}
 
-	public void resetImages() {
-		for (BorderFragment[] fragments : borderHor) {
-			for (BorderFragment fragment : fragments) {
-				fragment.resetImage();
-			}
-		}
-		for (BorderFragment[] fragments : borderVert) {
-			for (BorderFragment fragment : fragments) {
-				fragment.resetImage();
-			}
-		}
-	}
-
-	public JPanel getPanel() {
-		return myPanel;
-	}
+//	public void resetImages() {  todo remove
+//		for (BorderFragment[] fragments : borderHorizontal) {
+//			for (BorderFragment fragment : fragments) {
+//				fragment.loadImage();
+//			}
+//		}
+//		for (BorderFragment[] fragments : borderVertical) {
+//			for (BorderFragment fragment : fragments) {
+//				fragment.loadImage();
+//			}
+//		}
+//	}
 }

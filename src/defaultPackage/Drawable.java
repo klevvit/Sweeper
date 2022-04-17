@@ -17,6 +17,11 @@ public abstract class Drawable extends WindowElement {
         this.currentImage = currentImage;
     }
 
+    protected Drawable(Dimension dimension, Image currentImage) {
+        super(dimension);
+        this.currentImage = currentImage;
+    }
+
     @Override
     public void updateSize() {
         setSize(getScaledSize());
